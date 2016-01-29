@@ -1,18 +1,67 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class InputManager : MonoBehaviour, IPointerClickHandler
+public class InputManager : MonoBehaviour
 {
-       
+    
+    #region FIELDS
+    
     /// <summary>
-    /// Handler para clicks del usuario
+    /// Objeto que sobre el que esta el raton en cada momento
     /// </summary>
-    public void OnPointerClick(PointerEventData eventData)
+    private GameObject _currentHoverObject = null;
+    
+    #endregion
+    
+    
+    #region UNITY_METHODS
+    
+    /// <summary>
+    /// Update del componente
+    /// </summary>
+    private void Update()
     {
-        /*
-        print("I was clicked");
-        target = Color.blue;
-        */
-    }
+        if (Input.GetMouseButtonDown(0))
+        {            
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit.collider != null) {
+                Debug.Log("LeftClicked: "+hit.collider.gameObject.name);
+                // TODO: Llamar a quien le importe CLICK IZQUIERDO
+            }            
+        }
+        
+        if (Input.GetMouseButtonDown(1))
+        {            
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit.collider != null) {
+                Debug.Log("RightClicked: "+hit.collider.gameObject.name);
+                // TODO: Llamar a quien le importe CLICK DERECHO
+            }            
+        }
+    }  
+    
+    /// <summary>
+    /// FixedUpdate del componente
+    /// </summary>
+    private void FixedUpdate()
+    {        
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if (hit.collider != null){
+            if(_currentHoverObject!=hit.collider.gameObject) {
+                _currentHoverObject = hit.collider.gameObject;
+                Debug.Log("HoverBegin: "+_currentHoverObject.name);
+                // TODO: Llamar a quien le importe HoverBEGIN
+            }
+        }
+        else
+        {
+            if(_currentHoverObject != null){
+                // TODO: Llamar a quien le importe HoverEND
+                Debug.Log("HoverEnd: "+_currentHoverObject.name);
+                _currentHoverObject = null;                
+            }
+        }            
+    } 
+    
+    #endregion
 	
 }
