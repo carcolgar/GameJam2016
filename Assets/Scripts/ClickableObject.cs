@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ClickableObject : MonoBehaviour
@@ -13,7 +14,7 @@ public class ClickableObject : MonoBehaviour
     /// <summary>
     /// Object image
     /// </summary>
-    public Sprite image;
+    public SpriteRenderer image;
 
     #endregion
 
