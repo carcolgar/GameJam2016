@@ -27,7 +27,7 @@ public class Monk : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!_isAsking) {
-			GameManager.SINGLETON.GetOrder();
+//			GameManager.SINGLETON.GetOrder();
 		}
 	}
 }
