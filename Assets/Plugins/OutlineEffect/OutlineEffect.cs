@@ -211,6 +211,7 @@ public class OutlineEffect : MonoBehaviour
 		Graphics.Blit(source, destination, outlineShaderMaterial);
 		RenderTexture.ReleaseTemporary(renderTexture);
         
+        
         updateRenderLists();
 	}
 
