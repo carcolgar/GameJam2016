@@ -8,6 +8,8 @@ public class PickableObject : ClickableObject{
     public override void OnClickPressed()
     {
         Debug.Log("PICKABLE: Click izquierdo");
+		GameManager.SINGLETON.Player.realCarriedObject = gameObject;
+		gameObject.SetActive (false);
     }
 
     /// <summary>
@@ -16,6 +18,8 @@ public class PickableObject : ClickableObject{
     public override void OnReleasePressed()
     {
         Debug.Log("PICKABLE: Click derecho");
+		GameManager.SINGLETON.Player.realCarriedObject = null;
+		gameObject.SetActive (true);
     }
 }
 

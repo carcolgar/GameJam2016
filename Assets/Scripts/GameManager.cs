@@ -148,6 +148,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void DecreaseLife() { 
         _currentLife -= 1; 
+		lifeMonksComponent.LifeLost();
          if (_currentLife <= 0)
         {
             GameOver();
@@ -165,7 +166,7 @@ public class GameManager : MonoBehaviour
         {
             pos = (pos + 1) % orders.Count;
         };
-
+		avaibleOrders [pos] = false;
         return orders[pos];
     }
 
@@ -208,7 +209,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            lifeMonksComponent.LifeGained();
+			if (_currentLife < life) {
+				_currentLife += pointsToRestWithBadObject;
+				lifeMonksComponent.LifeGained ();
+			}
         }
         
         CancelOrder(pos);

@@ -17,14 +17,12 @@ public class MonksHandsUpManager : MonoBehaviour {
     private float timeSinceLastHandsUp;
     private float accumulatedTimeHundsUp;
     private bool monksAreRisingArms;
-    private bool playerRisedArms;
     
 	// Use this for initialization
 	void Start () {
 	   timeSinceLastHandsUp = 0;
        accumulatedTimeHundsUp = 0;
        monksAreRisingArms = false;
-       playerRisedArms = false;
 	}
 	
 	// Update is called once per frame
@@ -42,19 +40,26 @@ public class MonksHandsUpManager : MonoBehaviour {
     
     private IEnumerator MonksHandsUp () {
         accumulatedTimeHundsUp = 0;
-        playerRisedArms = false;
         foreach (MonkHandsUp monkHandsUp in monks) {
             monkHandsUp.HandsUp();
         }
-        while (!GameManager.SINGLETON.Player.HasHandsUp && accumulatedTimeHundsUp < timeMonksHoldHandsUp) {
+		bool playerHasRisedArms = false;
+        while (accumulatedTimeHundsUp < timeMonksHoldHandsUp) {
+			if (GameManager.SINGLETON.Player.HasHandsUp)
+				playerHasRisedArms = true;
+			else if (playerHasRisedArms) {
+				GameManager.SINGLETON.DecreaseLife();
+				playerHasRisedArms = false;
+			}
+				
             accumulatedTimeHundsUp += Time.deltaTime;
             yield return 0;
         }
-        if (!GameManager.SINGLETON.Player.HasHandsUp) {
-            GameManager.SINGLETON.DecreaseLife();
-        }
+		if (!GameManager.SINGLETON.Player.HasHandsUp)
+			GameManager.SINGLETON.DecreaseLife();
         foreach (MonkHandsUp monkHandsUp in monks) {
             monkHandsUp.HandsDown();
         }
+		monksAreRisingArms = false;
     }
 }

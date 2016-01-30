@@ -31,6 +31,8 @@ public class MonkRequest : MonoBehaviour
     /// </summary>
     private IEnumerator _currentCoroutine = null;
     
+	public Bubble bubble;
+
 	#endregion
     
 
@@ -75,7 +77,7 @@ public class MonkRequest : MonoBehaviour
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: FALLO!");
             GameManager.SINGLETON.BadRequestedReceived();
         }
-             
+		bubble.DisableBubble ();
         ResetBehaviourVars();
     } 
     
@@ -92,6 +94,7 @@ public class MonkRequest : MonoBehaviour
         Debug.Log("[MonkRequest::MonkBehaviour] Orden pedida");
         // Pedimos la nueva orden
         _currentOrderGO = GameManager.SINGLETON.GetNextOrder(ref _orderIndex);
+		bubble.ActivateBubble (_currentOrderGO.GetComponentInChildren<SpriteRenderer> ());
         
         // Mostramos la informacion de la orden
         // @TODO
@@ -103,6 +106,7 @@ public class MonkRequest : MonoBehaviour
         Debug.Log("[MonkRequest::MonkBehaviour] Orden Timeout");
         // Orden fallida!
         GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
+		bubble.DisableBubble ();
         
         ResetBehaviourVars();
     }

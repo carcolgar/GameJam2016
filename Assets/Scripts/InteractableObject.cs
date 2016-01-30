@@ -7,8 +7,8 @@ public class InteractableObject : ClickableObject {
     /// </summary>
     public override void OnClickPressed()
     {
-        Debug.Log("INTERACTABLE: Click izquierdo");
-    }
+
+	}
 
     /// <summary>
     /// On right click pressed method
