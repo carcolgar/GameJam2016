@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
     /// Devuelve a los Monigotes que dan ordenes la siguiente orden a ejecutar
     /// </summary>
     /// <returns></returns>
-    public GameObject GetNextOrder(int pos)
+    public GameObject GetNextOrder(ref int pos)
     {
         pos = Random.Range(0, orders.Count - 1);
         while (!avaibleOrders[pos])
