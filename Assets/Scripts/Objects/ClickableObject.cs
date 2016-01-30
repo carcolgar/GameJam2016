@@ -32,7 +32,7 @@ public class ClickableObject : MonoBehaviour
     #region UNITY_METHODS
 
     // Use this for initialization
-	void Start () {
+	protected void Start () {
         takeObjectPosition = transform.FindChild("TakeObjectPosition").transform.position;
 	}
 	
