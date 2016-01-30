@@ -22,6 +22,13 @@ public class LifeMonks : MonoBehaviour {
 	/// Número de monjes que sí te miran
 	/// </summary>
 	private int _numAngryMonks;
+    
+    /// <summary>
+    /// Sprite que se muestra segun pierdas o ganes vidas
+    /// </summary>
+    public Sprite happyFace = null;
+    public Sprite angryFace = null;
+
 	#endregion
 
 	#region UNITY
@@ -32,8 +39,12 @@ public class LifeMonks : MonoBehaviour {
 		_numAngryMonks = 0;
 
 		_happyMonks = new bool[_numHappyMonks];
-		for (int i=0; i<_happyMonks.Length; i++)
-			_happyMonks[i] = true;
+        for (int i = 0; i < _happyMonks.Length; i++)
+        {
+            _happyMonks[i] = true; 
+            _lifeMonks[i].GetComponent<SpriteRenderer>().sprite = happyFace;
+        }
+
 	}
 	
 	// Update is called once per frame
@@ -54,7 +65,7 @@ public class LifeMonks : MonoBehaviour {
 			if (_happyMonks[i] == true) {
 				if (count == index) {
 					_happyMonks[i] = false;
-					_lifeMonks[i].GetComponent<SpriteRenderer>().color = Color.red;
+                    _lifeMonks[i].GetComponent<SpriteRenderer>().sprite = angryFace;
 					break;
 				}
 				count++;
@@ -80,7 +91,7 @@ public class LifeMonks : MonoBehaviour {
 			if (_happyMonks[i] == false) {
 				if (count == index) {
 					_happyMonks[i] = true;
-					_lifeMonks[i].GetComponent<SpriteRenderer>().color = Color.white;
+                    _lifeMonks[i].GetComponent<SpriteRenderer>().sprite = happyFace;
 					break;
 				}
 				count++;

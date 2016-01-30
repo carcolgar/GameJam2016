@@ -6243,7 +6243,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: 1a4c15aa53a9225448f5e51eddd5fee0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4baec65bf356edf42b51ea423a195922, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9228,6 +9228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0fd694348cbf04082634980541dc7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  happyFace: {fileID: 0}
+  angryFace: {fileID: 0}
 --- !u!4 &1544332668 stripped
 Transform:
   m_PrefabParentObject: {fileID: 482546, guid: a3f21c00384d1aa478f98346bf0e9fbb, type: 2}
