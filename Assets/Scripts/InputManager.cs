@@ -66,6 +66,8 @@ public class InputManager : MonoBehaviour
         {
             if (_currentHoverObject != hit.collider.gameObject)
             {
+                if (_currentHoverObject != null)
+                    _currentHoverObject.BroadcastMessage("DisableOutline");
                 _currentHoverObject = hit.collider.gameObject;
                 Debug.Log("HoverBegin: " + _currentHoverObject.name);
                 // TODO: Llamar a quien le importe HoverBEGIN
