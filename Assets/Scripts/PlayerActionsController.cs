@@ -13,6 +13,8 @@ public class PlayerActionsController : MonoBehaviour
     
     // Vector usado para rotar el sprite cuando cambia de dirección
     private Vector3 rotationVector = new Vector3(0,180,0);
+    
+    private bool isRisingArms = false;
 
     //Controlador de animaciones
     public PlayerAnimationsController playerAnimationsController;
@@ -29,6 +31,10 @@ public class PlayerActionsController : MonoBehaviour
         {
             carriedObject = value;
         }
+    }
+    
+    public bool HasHandsUp {
+        get { return isRisingArms; }
     }
 
     //Objetivo del jugador
@@ -61,7 +67,9 @@ public class PlayerActionsController : MonoBehaviour
         else
         {
             transform.position = targetPosition;
-            playerAnimationsController.Idle();
+            if (!isRisingArms) {
+                playerAnimationsController.Idle();
+            }
         }
     }
     #endregion
@@ -74,13 +82,18 @@ public class PlayerActionsController : MonoBehaviour
         targetPosition = targetPoint;
         //Call WALK animation
         rotatePlayerIfNeeded();
-        playerAnimationsController.Walk();
+        if (isRisingArms) {
+            playerAnimationsController.DownArms();
+            isRisingArms = false; 
+        } else playerAnimationsController.Walk();
     }
 
     public void RiseArms()
     {
         Debug.Log("Animate Arms");
+        isRisingArms = true;
         ///Call RISEARMS animation
+        playerAnimationsController.RiseArms();
     }
 
     public void InteractWithObject(GameObject clickable)
@@ -89,8 +102,11 @@ public class PlayerActionsController : MonoBehaviour
         carriedObject = clickable;
         Debug.Log(clickable.GetComponent<ClickableObject>().TakeObjectPosition);
         targetPosition = clickable.GetComponent<ClickableObject>().TakeObjectPosition;
-        rotatePlayerIfNeeded();
-        playerAnimationsController.Walk();        
+        rotatePlayerIfNeeded();      
+        if (isRisingArms) {
+            playerAnimationsController.DownArms();
+            isRisingArms = false; 
+        } else playerAnimationsController.Walk();
         //Call INTERACT animation
     }
     
@@ -99,6 +115,14 @@ public class PlayerActionsController : MonoBehaviour
             transform.Rotate(rotationVector);
             isFacingRight = !isFacingRight;
         }
+    }
+    
+    private IEnumerator downArmsAndWalk () {
+        playerAnimationsController.DownArms();
+        isRisingArms = false;
+        yield return new WaitForSeconds(0.25f);
+        playerAnimationsController.Walk();
+        
     }
     
     #endregion
