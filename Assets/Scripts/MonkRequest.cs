@@ -63,21 +63,18 @@ public class MonkRequest : MonoBehaviour
         StopCoroutine(_currentCoroutine);        
         
         // Comprobamos resultado
-        if(_currentOrderGO == resultGO)
+        if(_currentOrderGO!=null && _currentOrderGO == resultGO)
         {
             // Correcto
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: CORRECTO!");
-            // @TODO
+            GameManager.SINGLETON.OrderCompleted(true, _orderIndex);
         }
         else
         {
             // Incorrecto
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: FALLO!");
-            // @TODO
+            GameManager.SINGLETON.BadRequestedReceived();
         }
-        
-        if(_currentOrderGO != null)
-            GameManager.SINGLETON.CancelOrder(_orderIndex);
              
         ResetBehaviourVars();
     } 
@@ -105,7 +102,7 @@ public class MonkRequest : MonoBehaviour
         
         Debug.Log("[MonkRequest::MonkBehaviour] Orden Timeout");
         // Orden fallida!
-        // @TODO        
+        GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
         
         ResetBehaviourVars();
     }
