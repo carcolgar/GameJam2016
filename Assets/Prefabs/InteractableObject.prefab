@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11427546}
   m_Layer: 0
   m_Name: InteractableObject
-  m_TagString: Untagged
+  m_TagString: Clickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,6 +32,21 @@ GameObject:
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &115998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 471194}
+  m_Layer: 0
+  m_Name: TakeObjectPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: -3906512864147387971, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -75,6 +90,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 482546}
   m_RootOrder: 1
+--- !u!4 &471194
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.53, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 482546}
+  m_RootOrder: 2
 --- !u!4 &482546
 Transform:
   m_ObjectHideFlags: 1
@@ -82,11 +109,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.4255733, y: -0.16603617, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 434842}
   - {fileID: 439294}
+  - {fileID: 471194}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!61 &6176832
@@ -202,7 +230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 8256864}
   image: {fileID: 21289238}
-  takeObjectPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &21273584
 SpriteRenderer:
   m_ObjectHideFlags: 1

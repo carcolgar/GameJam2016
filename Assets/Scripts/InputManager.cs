@@ -25,12 +25,16 @@ public class InputManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit.collider != null) {
                 Debug.Log("LeftClicked: "+hit.collider.gameObject.name);
+
+                if (hit.collider.gameObject.name == "Walkable") {
+                    GameManager.SINGLETON.Player.WalkToPoint(hit.point);
+                }
                 
                 ClickableObject clickable;
 
                 if (clickable = gameObject.GetComponent<ClickableObject>())
-                { 
-                    clickable.OnClickPressed();
+                {
+                    GameManager.SINGLETON.Player.InteractWithObject(clickable.gameObject);
                 }
                 // TODO: Llamar a quien le importe CLICK IZQUIERDO
             }            
@@ -38,10 +42,10 @@ public class InputManager : MonoBehaviour
         
         if (Input.GetMouseButtonDown(1))
         {            
-            /*GameObject carriedObject = GameManager.SINGLETON.Player.CarriedObject;
+            GameObject carriedObject = GameManager.SINGLETON.Player.CarriedObject;
             if(carriedObject)
                 carriedObject.GetComponent<ClickableObject>().OnReleasePressed();
-             */
+             
         }
     }  
     

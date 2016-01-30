@@ -16,6 +16,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &150858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 494028}
+  m_Layer: 0
+  m_Name: TakeObjectPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: -2663371497217273435, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &163188
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +45,7 @@ GameObject:
   - 114: {fileID: 11450308}
   m_Layer: 0
   m_Name: PickableObject
-  m_TagString: Untagged
+  m_TagString: Clickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,8 +102,21 @@ Transform:
   m_Children:
   - {fileID: 470782}
   - {fileID: 441970}
+  - {fileID: 494028}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &494028
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 477888}
+  m_RootOrder: 2
 --- !u!61 &6110494
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -202,7 +230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 8216038}
   image: {fileID: 21256538}
-  takeObjectPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &21206658
 SpriteRenderer:
   m_ObjectHideFlags: 1
