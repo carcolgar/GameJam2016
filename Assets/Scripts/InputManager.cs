@@ -50,12 +50,14 @@ public class InputManager : MonoBehaviour
                 _currentHoverObject = hit.collider.gameObject;
                 Debug.Log("HoverBegin: "+_currentHoverObject.name);
                 // TODO: Llamar a quien le importe HoverBEGIN
+                _currentHoverObject.SendMessage("EnableOutline");
             }
         }
         else
         {
             if(_currentHoverObject != null){
                 // TODO: Llamar a quien le importe HoverEND
+                _currentHoverObject.SendMessage("DisableOutline");                
                 Debug.Log("HoverEnd: "+_currentHoverObject.name);
                 _currentHoverObject = null;                
             }

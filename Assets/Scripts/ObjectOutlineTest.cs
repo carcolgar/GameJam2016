@@ -15,7 +15,7 @@ public class ObjectOutlineTest : MonoBehaviour {
 	void Update () {
 	   if (en != prevState) {
            if (en) outline.EnableOutline();
-           else outline.DisableOutLine();
+           else outline.DisableOutline();
            prevState = en;
        }
 	}
