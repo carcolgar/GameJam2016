@@ -22,6 +22,12 @@ public class GameManager : MonoBehaviour
 
     //Puntero al Life monks
     public LifeMonks lifeMonksComponent;
+    
+    public ParticleSystem invocationSmoke;
+    
+    public GameObject[] gameOverInvocations;
+    
+    public float[] scoreNeededForNextInvocation;
 
     // Array que contiene la informacion de las ordenes que ya han sido mandadas
     private List<bool> avaibleOrders = null;
@@ -31,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     // Vida REAL del jugador
     private float _currentTime;
+    
+    private float score;
     
     // Puntero al componente de control del player
     public PlayerActionsController player = null;
@@ -75,7 +83,12 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         _instance = this;
+        score = 0;
         InitOrders();
+    }
+    
+    private void Start () {
+        invocationSmoke.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -93,11 +106,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Update()
     {
+        score += Time.deltaTime;
         _currentTime += Time.deltaTime;
+        /*
         if (_currentTime >= time)
         {
             GameOver();
-        }
+        }*/
     }
 
     #endregion
@@ -127,7 +142,13 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Disminuye la vida(actual) del jugador.
     /// </summary>
-    public void DecreaseLife() { _currentLife -= 1; }
+    public void DecreaseLife() { 
+        _currentLife -= 1; 
+         if (_currentLife <= 0)
+        {
+            GameOver();
+        }
+    }
 
     /// <summary>
     /// Devuelve a los Monigotes que dan ordenes la siguiente orden a ejecutar
@@ -159,6 +180,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void GameOver()
     { 
+        invocationSmoke.gameObject.SetActive(true);
+        int i = 0;
+        while (i < scoreNeededForNextInvocation.Length && scoreNeededForNextInvocation[i] <= score)
+            ++i;
+       if (i >= scoreNeededForNextInvocation.Length) 
+            i = gameOverInvocations.Length-1;
+       gameOverInvocations[i].SetActive(true);
     }
 
     /// <summary>
