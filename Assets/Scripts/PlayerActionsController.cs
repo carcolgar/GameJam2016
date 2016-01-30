@@ -14,11 +14,14 @@ public class PlayerActionsController : MonoBehaviour
 
     // Objeto que lleva el jugador 
     GameObject carriedObject;
-    public GameObject CarriedObject {
-        get {
+    public GameObject CarriedObject
+    {
+        get
+        {
             return carriedObject;
         }
-        set {
+        set
+        {
             carriedObject = value;
         }
     }
@@ -26,65 +29,56 @@ public class PlayerActionsController : MonoBehaviour
     //Objetivo del jugador
     Vector2 targetPosition;
 
-    //Diccionario de acciones que puede hacer el personaje
-    Dictionary<string, System.Action<Vector2>> actions;
+    //Objeto a ser recogido
+    bool isMovingToCarry;
+
     #endregion
 
     #region UNITY_METHODS
-    void Start()
+
+    void Update()
     {
-        AddActions();
-    }
-    
-    void Update () {
         if (Mathf.Abs(transform.position.x - targetPosition.x) > 0.01)
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, step);
+            if (carriedObject != null && isMovingToCarry)
+            {
+                isMovingToCarry = false;
+                carriedObject.GetComponent<ClickableObject>().OnClickPressed();
+            }
         }
-        else {
+        else
+        {
             transform.position = targetPosition;
             playerAnimationsController.Idle();
         }
-	}
+    }
     #endregion
 
     #region CUSTOM_METHODS
-    //Añadir acciones del jugador
-    void AddActions()
-    {
-        actions = new Dictionary<string, System.Action<Vector2>>(){
-            {"Walkable", (hitPoint) => WalkToPoint(hitPoint)},
-            {"Player", (hitPoint) => RiseArms(hitPoint)},
-            {"InteractableObject", (hitPoint) => InteractWithObject(hitPoint)}
-        };
-    }
-
-    //Llamada a la acción
-    public void EnterAction(string clickedObjectTag) {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), -Vector2.up);
-        if (hit.collider != null && actions.ContainsKey(hit.collider.tag)) {
-            actions[hit.collider.tag](hit.point);
-        }
-    }
-
     //ACCIONES
-    void WalkToPoint(Vector2 hitPoint) {
+    public void WalkToPoint(Vector2 targetPoint)
+    {
         Debug.Log("WalkToPoint");
-        targetPosition = hitPoint;
+        targetPosition = targetPoint;
         //Call WALK animation
         playerAnimationsController.Walk();
     }
 
-    void RiseArms(Vector2 zero){
+    public void RiseArms()
+    {
         Debug.Log("Animate Arms");
         ///Call RISEARMS animation
     }
 
-    void InteractWithObject(Vector2 hitPoint) {
-        targetPosition = hitPoint;
-        Debug.Log("Interacting");
-        //Call 
+    public void InteractWithObject(GameObject clickable)
+    {
+        isMovingToCarry = true;
+        carriedObject = clickable;
+        Debug.Log(clickable.GetComponent<ClickableObject>().TakeObjectPosition);
+        targetPosition = clickable.GetComponent<ClickableObject>().TakeObjectPosition;
+        //Call INTERACT animation
     }
     #endregion
 

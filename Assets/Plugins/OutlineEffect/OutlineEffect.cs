@@ -211,7 +211,6 @@ public class OutlineEffect : MonoBehaviour
 		Graphics.Blit(source, destination, outlineShaderMaterial);
 		RenderTexture.ReleaseTemporary(renderTexture);
         
-        
         updateRenderLists();
 	}
 
@@ -275,13 +274,17 @@ public class OutlineEffect : MonoBehaviour
     }
     
     public OutlineEffect AddRenderer (Renderer renderer) {
-        pendingAddOutlineRenderers.Add(renderer);
+        if (!outlineRenderers.Contains(renderer))
+            pendingAddOutlineRenderers.Add(renderer);
         pendingAddOutlineRendererColors.Add(0);
         return this;
     } 
     
     public void WithColorFromIndex(int index) {
-        pendingAddOutlineRendererColors[pendingAddOutlineRendererColors.Count-1] = index;
+        if (pendingAddOutlineRendererColors.Count != pendingAddOutlineRenderers.Count)
+            pendingAddOutlineRendererColors.RemoveAt(pendingAddOutlineRendererColors.Count - 1);
+        else
+            pendingAddOutlineRendererColors[pendingAddOutlineRendererColors.Count-1] = index;
     }
     
     public void EraseRenderer (Renderer renderer) {

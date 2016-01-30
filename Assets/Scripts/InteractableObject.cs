@@ -2,17 +2,6 @@
 using System.Collections;
 
 public class InteractableObject : ClickableObject {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     /// <summary>
     /// On click pressed method
     /// </summary>
