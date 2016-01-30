@@ -28,20 +28,16 @@ public class LifeMonks : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_lifeMonks = GameObject.FindGameObjectsWithTag("LifeMonk");
-		//_happyMonks = new bool[GameManager.SINGLETON.life];
 		_numHappyMonks = GameManager.SINGLETON.life;
 		_numAngryMonks = 0;
 
-		//for (int i = 0; i < GameManager.SINGLETON.life; i++) {
-		//	Debug.Log (":)");
-		//	_happyMonks [i] = true;
-		//}
+		_happyMonks = new bool[_numHappyMonks];
+		for (int i=0; i<_happyMonks.Length; i++)
+			_happyMonks[i] = true;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update () {}
 	#endregion
 
 	#region METHODS
@@ -58,7 +54,7 @@ public class LifeMonks : MonoBehaviour {
 			if (_happyMonks[i] == true) {
 				if (count == index) {
 					_happyMonks[i] = false;
-					Debug.Log("El monje " + i + " se ha enfadado");
+					_lifeMonks[i].GetComponent<SpriteRenderer>().color = Color.red;
 					break;
 				}
 				count++;
@@ -84,7 +80,7 @@ public class LifeMonks : MonoBehaviour {
 			if (_happyMonks[i] == false) {
 				if (count == index) {
 					_happyMonks[i] = true;
-					//TODO Turn Around
+					_lifeMonks[i].GetComponent<SpriteRenderer>().color = Color.white;
 					break;
 				}
 				count++;
