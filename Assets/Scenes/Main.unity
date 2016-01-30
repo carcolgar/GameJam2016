@@ -2478,7 +2478,7 @@ Transform:
   m_GameObject: {fileID: 445436309}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4, y: -6, z: 0}
-  m_LocalScale: {x: 1.7871281, y: 1.7796887, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1544099280}
   m_RootOrder: 7
@@ -6243,7 +6243,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: 4baec65bf356edf42b51ea423a195922, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0a63b40bb8431ac45ab95077084510d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9228,8 +9228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0fd694348cbf04082634980541dc7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  happyFace: {fileID: 0}
-  angryFace: {fileID: 0}
+  happyFace: {fileID: 21300000, guid: e6adc9a2ecffac44aa553a2da6ecc261, type: 3}
+  angryFace: {fileID: 21300000, guid: 02cef9433adcc9f4eaa21ac131e7b9d7, type: 3}
 --- !u!4 &1544332668 stripped
 Transform:
   m_PrefabParentObject: {fileID: 482546, guid: a3f21c00384d1aa478f98346bf0e9fbb, type: 2}
