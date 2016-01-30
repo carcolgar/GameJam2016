@@ -58,17 +58,19 @@ public class PlayerActionsController : MonoBehaviour
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, step);
-            if (carriedObject != null && isMovingToCarry)
-            {
-                isMovingToCarry = false;
-                carriedObject.GetComponent<ClickableObject>().OnClickPressed();
-            }
         }
         else
         {
             transform.position = targetPosition;
-            if (!isRisingArms) {
+            if (!isRisingArms)
+            {
                 playerAnimationsController.Idle();
+            }
+            if (carriedObject != null && isMovingToCarry)
+            {
+                isMovingToCarry = false;
+                carriedObject.GetComponent<ClickableObject>().OnClickPressed();
+                playerAnimationsController.ÍnteractWithObject();
             }
         }
     }
@@ -100,7 +102,6 @@ public class PlayerActionsController : MonoBehaviour
     {
         isMovingToCarry = true;
         carriedObject = clickable;
-        Debug.Log(clickable.GetComponent<ClickableObject>().TakeObjectPosition);
         targetPosition = clickable.GetComponent<ClickableObject>().TakeObjectPosition;
         rotatePlayerIfNeeded();      
         if (isRisingArms) {

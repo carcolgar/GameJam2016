@@ -9,11 +9,11 @@ public class PlayerAnimationsController : MonoBehaviour {
 	}
 
     public void Walk() {
-        animator.Play("Walk");
+        animator.SetBool("Moving", true);
     }
 
     public void Idle() {
-        animator.Play("Idle");
+        animator.SetBool("Moving", false);
     }
     
     public void RiseArms () {
@@ -22,5 +22,11 @@ public class PlayerAnimationsController : MonoBehaviour {
     
     public void DownArms () {
         animator.Play("DownArms");
+    }
+
+    public void ÍnteractWithObject()
+    {
+        animator.SetTrigger("Interact");
+        animator.SetBool("Moving", false);
     }
 }
