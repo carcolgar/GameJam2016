@@ -15,4 +15,12 @@ public class PlayerAnimationsController : MonoBehaviour {
     public void Idle() {
         animator.Play("Idle");
     }
+    
+    public void RiseArms () {
+        animator.Play("RaiseArms");
+    }
+    
+    public void DownArms () {
+        animator.Play("DownArms");
+    }
 }
