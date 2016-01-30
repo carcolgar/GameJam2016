@@ -36,6 +36,11 @@ public class PlayerActionsController : MonoBehaviour
 
     #region UNITY_METHODS
 
+	void Start()
+	{
+		targetPosition = transform.position;
+	}
+
     void Update()
     {
         if (Mathf.Abs(transform.position.x - targetPosition.x) > 0.01)
