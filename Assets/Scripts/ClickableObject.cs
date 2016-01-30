@@ -17,7 +17,8 @@ public class ClickableObject : MonoBehaviour
     public SpriteRenderer image;
 
     /// <summary>
-    /// Posicion en la que colocaremos al player para coger el objeto
+    /// Posicion en la que colocaremos al player 
+    /// para coger el objeto
     /// </summary>
     public Vector3 takeObjectPosition;
 

@@ -38,18 +38,10 @@ public class InputManager : MonoBehaviour
         
         if (Input.GetMouseButtonDown(1))
         {            
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if (hit.collider != null) {
-                Debug.Log("RightClicked: "+hit.collider.gameObject.name);
-
-                ClickableObject clickable;
-
-                if (clickable = gameObject.GetComponent<ClickableObject>())
-                {
-                    clickable.OnReleasePressed();
-                }
-                // TODO: Llamar a quien le importe CLICK DERECHO
-            }            
+            /*GameObject carriedObject = GameManager.SINGLETON.Player.CarriedObject;
+            if(carriedObject)
+                carriedObject.GetComponent<ClickableObject>().OnReleasePressed();
+             */
         }
     }  
     
