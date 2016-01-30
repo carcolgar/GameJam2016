@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
@@ -29,8 +28,19 @@ public class GameManager : MonoBehaviour
 
     // Vida REAL del jugador
     private float _currentTime;
+    
+    // Puntero al componente de control del player
+    //public PlayerActionController player = null;
 
     #endregion
+    
+    
+    #region PROPERTIES
+    
+    //public PlayerActionController { get {return player;} }
+    
+    #endregion
+    
     
     #region SINGLETON
 
@@ -120,7 +130,7 @@ public class GameManager : MonoBehaviour
     /// Devuelve a los Monigotes que dan ordenes la siguiente orden a ejecutar
     /// </summary>
     /// <returns></returns>
-    public GameObject GetNextOrder(int pos)
+    public GameObject GetNextOrder(ref int pos)
     {
         pos = Random.Range(0, orders.Count - 1);
         while (!avaibleOrders[pos])

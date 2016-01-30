@@ -34,6 +34,12 @@ public class OutlineEffect : MonoBehaviour
 	public List<Renderer> outlineRenderers = new List<Renderer>();
     public List<int> outlineRendererColors = new List<int>();
     public List<Renderer> eraseRenderers = new List<Renderer>();
+    
+    private List<Renderer> pendingAddOutlineRenderers = new List<Renderer>();
+    private List<int> pendingAddOutlineRendererColors = new List<int>();
+    
+    private List<Renderer> pendingRemoveOutlineRenderers = new List<Renderer>();
+    
 
     public float lineThickness = 4f;
     public float lineIntensity = .5f;
@@ -204,6 +210,8 @@ public class OutlineEffect : MonoBehaviour
 		outlineShaderMaterial.SetTexture("_OutlineSource", renderTexture);
 		Graphics.Blit(source, destination, outlineShaderMaterial);
 		RenderTexture.ReleaseTemporary(renderTexture);
+        
+        updateRenderLists();
 	}
 
 	private void CreateMaterialsIfNeeded()
@@ -266,18 +274,32 @@ public class OutlineEffect : MonoBehaviour
     }
     
     public OutlineEffect AddRenderer (Renderer renderer) {
-        outlineRenderers.Add(renderer);
-        outlineRendererColors.Add(0);
+        pendingAddOutlineRenderers.Add(renderer);
+        pendingAddOutlineRendererColors.Add(0);
         return this;
     } 
     
     public void WithColorFromIndex(int index) {
-        outlineRendererColors[outlineRendererColors.Count-1] = index;
+        pendingAddOutlineRendererColors[pendingAddOutlineRendererColors.Count-1] = index;
     }
     
     public void EraseRenderer (Renderer renderer) {
-        int index = outlineRenderers.IndexOf(renderer);
-        outlineRenderers.RemoveAt(index);
-        outlineRendererColors.RemoveAt(index);
+        pendingRemoveOutlineRenderers.Add(renderer);
+    }
+    
+    private void updateRenderLists () {
+        for (int i = 0; i < pendingRemoveOutlineRenderers.Count; ++i) {
+            int index = outlineRenderers.IndexOf(pendingRemoveOutlineRenderers[i]);
+            outlineRenderers.RemoveAt(index);
+            outlineRendererColors.RemoveAt(index);
+        }
+        pendingRemoveOutlineRenderers.Clear();
+        
+        for (int i = 0; i < pendingAddOutlineRenderers.Count; ++i) {
+            outlineRenderers.Add(pendingAddOutlineRenderers[i]);
+            outlineRendererColors.Add(pendingAddOutlineRendererColors[i]);
+        }
+        pendingAddOutlineRendererColors.Clear();
+        pendingAddOutlineRenderers.Clear();
     }
 }

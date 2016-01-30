@@ -19,7 +19,7 @@ public class ObjectOutline : MonoBehaviour {
         cameraOutlineEffect.AddRenderer(spriteRenderer).WithColorFromIndex(outlineColorIndex);
     }	
     
-    public void DisableOutLine () {
+    public void DisableOutline () {
         cameraOutlineEffect.EraseRenderer(spriteRenderer);
     }
 }
