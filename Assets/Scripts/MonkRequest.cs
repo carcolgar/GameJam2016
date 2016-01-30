@@ -96,6 +96,8 @@ public class MonkRequest : MonoBehaviour
         _currentOrderGO = GameManager.SINGLETON.GetNextOrder(ref _orderIndex);
 		bubble.ActivateBubble (_currentOrderGO.GetComponentInChildren<SpriteRenderer> ());
         
+        FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.Request);
+        
         // Mostramos la informacion de la orden
         // @TODO
         
