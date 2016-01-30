@@ -30,14 +30,14 @@ public class GameManager : MonoBehaviour
     private float _currentTime;
     
     // Puntero al componente de control del player
-    //public PlayerActionController player = null;
+    public PlayerActionsController player = null;
 
     #endregion
     
     
     #region PROPERTIES
     
-    //public PlayerActionController { get {return player;} }
+    public PlayerActionsController Player { get {return player;} }
     
     #endregion
     

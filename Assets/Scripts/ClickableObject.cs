@@ -20,7 +20,12 @@ public class ClickableObject : MonoBehaviour
     /// Posicion en la que colocaremos al player 
     /// para coger el objeto
     /// </summary>
-    public Vector3 takeObjectPosition;
+    private Vector2 takeObjectPosition;
+    public Vector2 TakeObjectPosition {
+        get {
+            return takeObjectPosition;
+        }
+    }
 
     #endregion
 
@@ -28,6 +33,8 @@ public class ClickableObject : MonoBehaviour
 
     // Use this for initialization
 	void Start () {
+        Debug.Log("ENTER HERE");
+        takeObjectPosition = transform.FindChild("TakeObjectPosition").transform.position;
 	}
 	
 	// Update is called once per frame
