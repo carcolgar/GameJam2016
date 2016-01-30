@@ -33,6 +33,7 @@ public class ClickableObject : MonoBehaviour
 
     // Use this for initialization
 	void Start () {
+        Debug.Log("ENTER HERE");
         takeObjectPosition = transform.FindChild("TakeObjectPosition").transform.position;
 	}
 	

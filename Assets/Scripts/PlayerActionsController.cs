@@ -14,11 +14,14 @@ public class PlayerActionsController : MonoBehaviour
 
     // Objeto que lleva el jugador 
     GameObject carriedObject;
-    public GameObject CarriedObject {
-        get {
+    public GameObject CarriedObject
+    {
+        get
+        {
             return carriedObject;
         }
-        set {
+        set
+        {
             carriedObject = value;
         }
     }
@@ -32,41 +35,48 @@ public class PlayerActionsController : MonoBehaviour
     #endregion
 
     #region UNITY_METHODS
-    
-    void Update () {
+
+    void Update()
+    {
         if (Mathf.Abs(transform.position.x - targetPosition.x) > 0.01)
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, step);
-            if (carriedObject != null && isMovingToCarry) {
+            if (carriedObject != null && isMovingToCarry)
+            {
                 isMovingToCarry = false;
                 carriedObject.GetComponent<ClickableObject>().OnClickPressed();
             }
         }
-        else {
+        else
+        {
             transform.position = targetPosition;
             playerAnimationsController.Idle();
         }
-	}
+    }
     #endregion
 
     #region CUSTOM_METHODS
     //ACCIONES
-    public void WalkToPoint(Vector2 targetPoint) {
+    public void WalkToPoint(Vector2 targetPoint)
+    {
         Debug.Log("WalkToPoint");
         targetPosition = targetPoint;
         //Call WALK animation
         playerAnimationsController.Walk();
     }
 
-    public void RiseArms(){
+    public void RiseArms()
+    {
         Debug.Log("Animate Arms");
         ///Call RISEARMS animation
     }
 
-    public void InteractWithObject(GameObject clickable) {
+    public void InteractWithObject(GameObject clickable)
+    {
         isMovingToCarry = true;
         carriedObject = clickable;
+        Debug.Log(clickable.GetComponent<ClickableObject>().TakeObjectPosition);
         targetPosition = clickable.GetComponent<ClickableObject>().TakeObjectPosition;
         //Call INTERACT animation
     }
