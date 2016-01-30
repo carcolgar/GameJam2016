@@ -29,6 +29,10 @@ public class InputManager : MonoBehaviour
                 if (hit.collider.gameObject.name == "Walkable") {
                     GameManager.SINGLETON.Player.WalkToPoint(hit.point);
                 }
+
+                if (hit.collider.gameObject == GameManager.SINGLETON.Player.gameObject) {
+                    GameManager.SINGLETON.Player.RiseArms();
+                }
                 
                 ClickableObject clickable;
 
