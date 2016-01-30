@@ -511,7 +511,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: 6775377f23130594db85de560a4feaeb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a4c15aa53a9225448f5e51eddd5fee0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -757,6 +757,7 @@ MonoBehaviour:
   pointsToRestWithTimeout: 0
   time: 0
   orders: []
+  lifeMonksComponent: {fileID: 0}
   player: {fileID: 1996814471}
 --- !u!4 &1556264892
 Transform:
