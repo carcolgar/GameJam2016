@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
     
     private void Start () {
         invocationSmoke.gameObject.SetActive(false);
+		_currentLife = life;
     }
 
     /// <summary>
@@ -113,6 +114,9 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }*/
+
+		if (_currentLife <= 0)
+			GameOver ();
     }
 
     #endregion
@@ -199,7 +203,7 @@ public class GameManager : MonoBehaviour
     {
         if (!successfully)
         {
-            life -= pointsToRestWithTimeout;
+            _currentLife -= pointsToRestWithTimeout;
             lifeMonksComponent.LifeLost();
         }
         else
@@ -216,7 +220,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void BadRequestedReceived()
     {
-        life -= pointsToRestWithBadObject;
+		_currentLife -= pointsToRestWithBadObject;
         lifeMonksComponent.LifeLost();
     }
     

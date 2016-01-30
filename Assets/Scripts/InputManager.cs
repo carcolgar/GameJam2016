@@ -25,7 +25,7 @@ public class InputManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit.collider != null)
             {
-                Debug.Log("LeftClicked: " + hit.collider.gameObject.name);
+                //Debug.Log("LeftClicked: " + hit.collider.gameObject.name);
 
                 if (hit.collider.gameObject.name == "Walkable")
                 {
@@ -67,13 +67,13 @@ public class InputManager : MonoBehaviour
             if (_currentHoverObject != hit.collider.gameObject)
             {
                 if (_currentHoverObject != null) {
-                     _currentHoverObject.BroadcastMessage("DisableOutline");
+                     _currentHoverObject.BroadcastMessage("DisableOutline",SendMessageOptions.DontRequireReceiver);
                 }
                 _currentHoverObject = hit.collider.gameObject;
-                Debug.Log("HoverBegin: " + _currentHoverObject.name);
+                //Debug.Log("HoverBegin: " + _currentHoverObject.name);
                 // TODO: Llamar a quien le importe HoverBEGIN
 
-                _currentHoverObject.BroadcastMessage("EnableOutline");
+				_currentHoverObject.BroadcastMessage("EnableOutline",SendMessageOptions.DontRequireReceiver);
             }
         }
         else
@@ -81,8 +81,8 @@ public class InputManager : MonoBehaviour
             if (_currentHoverObject != null)
             {
                 // TODO: Llamar a quien le importe HoverEND
-                _currentHoverObject.BroadcastMessage("DisableOutline");
-                Debug.Log("HoverEnd: " + _currentHoverObject.name);
+				_currentHoverObject.BroadcastMessage("DisableOutline",SendMessageOptions.DontRequireReceiver);
+                //Debug.Log("HoverEnd: " + _currentHoverObject.name);
                 _currentHoverObject = null;
             }
         }
