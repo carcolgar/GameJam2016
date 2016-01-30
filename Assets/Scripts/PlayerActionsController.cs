@@ -8,6 +8,11 @@ public class PlayerActionsController : MonoBehaviour
 
     //Velocidad del jugador al moverse
     public float speed = 5;
+    
+    private bool isFacingRight = false;
+    
+    // Vector usado para rotar el sprite cuando cambia de dirección
+    private Vector3 rotationVector = new Vector3(0,180,0);
 
     //Controlador de animaciones
     public PlayerAnimationsController playerAnimationsController;
@@ -68,6 +73,7 @@ public class PlayerActionsController : MonoBehaviour
         Debug.Log("WalkToPoint");
         targetPosition = targetPoint;
         //Call WALK animation
+        rotatePlayerIfNeeded();
         playerAnimationsController.Walk();
     }
 
@@ -83,8 +89,18 @@ public class PlayerActionsController : MonoBehaviour
         carriedObject = clickable;
         Debug.Log(clickable.GetComponent<ClickableObject>().TakeObjectPosition);
         targetPosition = clickable.GetComponent<ClickableObject>().TakeObjectPosition;
+        rotatePlayerIfNeeded();
+        playerAnimationsController.Walk();        
         //Call INTERACT animation
     }
+    
+    private void rotatePlayerIfNeeded () {
+        if ((transform.position.x < targetPosition.x) != isFacingRight) {
+            transform.Rotate(rotationVector);
+            isFacingRight = !isFacingRight;
+        }
+    }
+    
     #endregion
 
 }
