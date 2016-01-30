@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     // Array con las ordenes que pueden mandar los monigotes
     public List<GameObject> orders = null;
 
+    //Puntero al Life monks
+    public LifeMonks lifeMonksComponent;
+
     // Array que contiene la informacion de las ordenes que ya han sido mandadas
     private List<bool> avaibleOrders = null;
 
@@ -166,7 +169,15 @@ public class GameManager : MonoBehaviour
     /// <param name="pos"></param>
     public void OrderCompleted(bool successfully, int pos)
     {
-        if (!successfully) life -= pointsToRestWithTimeout;
+        if (!successfully)
+        {
+            life -= pointsToRestWithTimeout;
+            lifeMonksComponent.LifeLost();
+        }
+        else
+        {
+            lifeMonksComponent.LifeGained();
+        }
         
         CancelOrder(pos);
     }
@@ -178,6 +189,7 @@ public class GameManager : MonoBehaviour
     public void BadRequestedReceived()
     {
         life -= pointsToRestWithBadObject;
+        lifeMonksComponent.LifeLost();
     }
     
     #endregion
