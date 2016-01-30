@@ -16,6 +16,11 @@ public class ClickableObject : MonoBehaviour
     /// </summary>
     public SpriteRenderer image;
 
+    /// <summary>
+    /// Posicion en la que colocaremos al player para coger el objeto
+    /// </summary>
+    public Vector3 takeObjectPosition;
+
     #endregion
 
     #region UNITY_METHODS
@@ -41,9 +46,16 @@ public class ClickableObject : MonoBehaviour
     }
 
     /// <summary>
-    /// On click pressed method
+    /// On left click pressed method
     /// </summary>
     public virtual void OnClickPressed()
+    {
+    }
+
+    /// <summary>
+    /// On right click pressed method
+    /// </summary>
+    public virtual void OnReleasePressed()
     {
     }
 

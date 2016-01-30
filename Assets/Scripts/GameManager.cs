@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour
     
     // Vida del jugador
     public int life;
+
+    //Puntos que quitar ante un mal objeto
+    public int pointsToRestWithBadObject;
+
+    //Puntos a quitar si time out
+    public int pointsToRestWithTimeout;
     
     // Tiempo total del jugador
     public float time;
@@ -129,7 +135,7 @@ public class GameManager : MonoBehaviour
     /// Cancela la orden indicada
     /// </summary>
     /// <param name="pos"></param>
-    public void CancelOrder(int pos)
+    private void CancelOrder(int pos)
     {
         avaibleOrders[pos] = true;
     }
@@ -142,5 +148,27 @@ public class GameManager : MonoBehaviour
     { 
     }
 
+    /// <summary>
+    /// Funcion a la que llamara al monk request si ha habido timeout
+    /// sin exito o si se ha completado la accion
+    /// </summary>
+    /// <param name="successfully"></param>
+    /// <param name="pos"></param>
+    public void OrderCompleted(bool successfully, int pos)
+    {
+        if (!successfully) life -= pointsToRestWithTimeout;
+        
+        CancelOrder(pos);
+    }
+
+    /// <summary>
+    /// Funcion a la que llamara al monk request si se recibe o
+    /// se hace una accion que no es
+    /// </summary>
+    public void BadRequestedReceived()
+    {
+        life -= pointsToRestWithBadObject;
+    }
+    
     #endregion
 }
