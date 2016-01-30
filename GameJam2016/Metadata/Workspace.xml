@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="Workspace" id="{b4b3a9d5-d3a6-4db8-ba36-c1da1bd0c920}">
+        <property name="builtBanksOutputDirectory">
+            <value>/Users/carcolgar/Desktop/Build/</value>
+        </property>
+        <property name="outputFormat">
+            <value>3</value>
+        </property>
+        <relationship name="masterEventFolder">
+            <destination>{c38915e0-e6a9-4e15-8b50-ba9111c00706}</destination>
+        </relationship>
+        <relationship name="masterTagFolder">
+            <destination>{f7745433-dcb8-428d-87d3-403c479e79e8}</destination>
+        </relationship>
+        <relationship name="masterBankFolder">
+            <destination>{36b1dec9-6de0-4e5c-88cb-bc60ab373965}</destination>
+        </relationship>
+        <relationship name="audioBinManager">
+            <destination>{3c92c5d6-c554-4c9c-bddf-e0e522a3a991}</destination>
+        </relationship>
+        <relationship name="mixer">
+            <destination>{8213fd59-bb23-4d92-b96b-89b9d761f740}</destination>
+        </relationship>
+    </object>
+    <object class="AudioBinManager" id="{3c92c5d6-c554-4c9c-bddf-e0e522a3a991}">
+        <relationship name="masterAudioBinFolder">
+            <destination>{5c14ee25-0a66-4535-814c-d2cb891bfc5e}</destination>
+        </relationship>
+    </object>
+</objects>

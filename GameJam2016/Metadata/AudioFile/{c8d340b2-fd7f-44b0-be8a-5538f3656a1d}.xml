@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{c8d340b2-fd7f-44b0-be8a-5538f3656a1d}">
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.3260997732426304</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/soplido3 {0638ccb8-422e-4ae0-b3aa-0c4ec3994242}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{5c14ee25-0a66-4535-814c-d2cb891bfc5e}</destination>
+        </relationship>
+    </object>
+</objects>

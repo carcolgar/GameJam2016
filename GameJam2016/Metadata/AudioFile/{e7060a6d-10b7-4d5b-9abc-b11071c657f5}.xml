@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{e7060a6d-10b7-4d5b-9abc-b11071c657f5}">
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>28.078662131519273</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/KraftHorsemen {13f69333-bb0a-458e-a829-c85cee1ddd3c}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{5c14ee25-0a66-4535-814c-d2cb891bfc5e}</destination>
+        </relationship>
+    </object>
+</objects>

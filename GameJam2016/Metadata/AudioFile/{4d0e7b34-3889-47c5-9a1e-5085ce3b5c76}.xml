@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{4d0e7b34-3889-47c5-9a1e-5085ce3b5c76}">
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>30.093061224489794</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/MutedBurblez {abad33b8-854a-4eae-95be-3073872121a9}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{5c14ee25-0a66-4535-814c-d2cb891bfc5e}</destination>
+        </relationship>
+    </object>
+</objects>

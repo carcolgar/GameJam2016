@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{0c9a972b-8d2f-422b-b2fa-682a40efa3a2}">
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.49446712018140587</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/hardCoff {09c5043b-d932-4ac4-8ffd-28ed3c5002bf}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{5c14ee25-0a66-4535-814c-d2cb891bfc5e}</destination>
+        </relationship>
+    </object>
+</objects>
