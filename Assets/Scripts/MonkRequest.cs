@@ -93,6 +93,8 @@ public class MonkRequest : MonoBehaviour
         // Pedimos la nueva orden
         _currentOrderGO = GameManager.SINGLETON.GetNextOrder(ref _orderIndex);
         
+        FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.Request);
+        
         // Mostramos la informacion de la orden
         // @TODO
         
