@@ -149,6 +149,7 @@ public class MonkRequest : MonoBehaviour
                 _currentOrderGO = null;
                 _currentOrderGOComponent.EndConflict();
             }else{
+                Debug.Log("ddsadsdasd");
                 GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
             }
             FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);

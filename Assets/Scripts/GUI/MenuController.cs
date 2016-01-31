@@ -11,13 +11,9 @@ public class MenuController : MonoBehaviour {
     [SerializeField]
     private GameObject creditsPanel;
     
-    [SerializeField]
-    private GameObject highScoresPanel;
-    
     void Start () {
         mainPanel.SetActive(true);
         creditsPanel.SetActive(false);
-        highScoresPanel.SetActive(false);
     }
     
     void Update () {
@@ -68,14 +64,12 @@ public class MenuController : MonoBehaviour {
     public void OnFadeToHighScoresFinished () {
         sceneFade.OnFadeFinished -= OnFadeToHighScoresFinished;
         mainPanel.SetActive(false);
-        highScoresPanel.SetActive(true);
         StartCoroutine(sceneFade.FadeIn(1));
     }
     
     public void OnFadeToMainFinished () {
         sceneFade.OnFadeFinished -= OnFadeToMainFinished;
         mainPanel.SetActive(true);
-        highScoresPanel.SetActive(false);
         creditsPanel.SetActive(false);
         StartCoroutine(sceneFade.FadeIn(1));
     }

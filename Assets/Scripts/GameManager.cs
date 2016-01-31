@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour
     /// <param name="pos"></param>
     private void CancelOrder(int pos)
     {
-        avaibleOrders[pos] = true;
+       if(pos != -1) avaibleOrders[pos] = true;
     }
 
 
@@ -298,7 +298,7 @@ public class GameManager : MonoBehaviour
         {
             if (!firstTurn)
             {
-                MonksHandsUpManager.SINGLETON.enabled = true;
+                //MonksHandsUpManager.SINGLETON.enabled = true;
                 for (int i = 0; i < monkRequest.Length; ++i)
                 {
                     monkRequest[i].bubble.DisableBubble();
@@ -306,8 +306,9 @@ public class GameManager : MonoBehaviour
                 }
                 return;
             }
-
-            if (!successfully)
+        }
+        else {
+             if (!successfully)
             {
                 _currentLife -= pointsToRestWithTimeout;
                 lifeMonksComponent.LifeLost();
