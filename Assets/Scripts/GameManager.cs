@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
 
     // Controlador de UI cuando acaba la partida
     public UIGameplayController UIController;
+    
+    private float _currentMonkParam = 0.0f;
 
     //Booleano para controlar si es el primer turno de partida
     public bool firstTurn = true;
@@ -135,8 +137,19 @@ public class GameManager : MonoBehaviour
             GameOver();
         }*/
         
-		if (_playing && _currentLife <= 0)
-			GameOver ();
+		if (_playing)
+        {
+            // Actualizamos el parametro del sonido de entorno y monjes
+            _currentMonkParam = Mathf.Lerp(_currentMonkParam, life - _currentLife, 0.05f);
+            FMODManager.SINGLETON.ChangeParameterValue(FMODManager.Sounds.Monks, FMODManager.Parameter.Monks, _currentMonkParam);
+            float timeParamValue = (2.0f * _currentTime) / scoreNeededForNextInvocation[scoreNeededForNextInvocation.Length-1];
+            FMODManager.SINGLETON.ChangeParameterValue(FMODManager.Sounds.Environment, FMODManager.Parameter.Time, timeParamValue);
+            
+            // Comprobamos final de partida
+            if(_currentLife <= 0)
+                GameOver ();
+        }
+			
     }
 
     #endregion
@@ -226,6 +239,7 @@ public class GameManager : MonoBehaviour
         
         FMODManager.SINGLETON.StopAllSounds();
         // Sonidos durante la partida
+        _currentMonkParam = 0.0f;
         FMODManager.SINGLETON.PlaySound(FMODManager.Sounds.Environment, FMODManager.Parameter.Time, 0.0f);
         FMODManager.SINGLETON.PlaySound(FMODManager.Sounds.Monks, FMODManager.Parameter.Monks, 0.0f);
     }
