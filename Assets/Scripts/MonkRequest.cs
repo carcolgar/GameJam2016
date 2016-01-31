@@ -169,7 +169,11 @@ public class MonkRequest : MonoBehaviour
         _currentCoroutine = null;
         _currentOrderGO = null;
         _currentOrderGOComponent = null;
-    }  
+    }
+
+    public void CancelRequest() {
+        StopAllCoroutines();
+    }
     
     #endregion
     
