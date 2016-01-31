@@ -6,10 +6,12 @@ public class MonkHandsUp : MonoBehaviour {
     private Animator monkAnimator;
     
     public void HandsUp () {
+		FMODManager.SINGLETON.PlaySound (FMODManager.Sounds.HandsOn);
         monkAnimator.Play("MonkRiseArms");
     }
     
     public void HandsDown () {
+		FMODManager.SINGLETON.StopSound (FMODManager.Sounds.HandsOn);
         monkAnimator.Play("MonkDownArms");
         //StartCoroutine(WaitForIdle());
     }
