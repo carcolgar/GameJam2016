@@ -104,6 +104,7 @@ public class MonkRequest : MonoBehaviour
     /// </summary>
     private IEnumerator MonkBehaviour()
     {
+        Debug.Log("MONK BEHAVIOUR");
 
         if (GameManager.SINGLETON.IsFirstTurn)
         {
@@ -166,6 +167,7 @@ public class MonkRequest : MonoBehaviour
     {
         _currentCoroutine = null;
         _currentOrderGO = null;
+        _currentOrderGOComponent = null;
     }  
     
     #endregion

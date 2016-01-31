@@ -293,7 +293,9 @@ public class GameManager : MonoBehaviour
             --unlightedCandles;
             firstTurn = (unlightedCandles > 0);
             Debug.Log("Primer turno: " + firstTurn);
-
+        }
+        else
+        {
             if (!firstTurn)
             {
                 MonksHandsUpManager.SINGLETON.enabled = true;
