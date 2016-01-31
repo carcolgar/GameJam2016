@@ -14,6 +14,10 @@ public class UIGameplayController : MonoBehaviour {
         gameOverPanel = transform.FindChild("GameOverPanel").gameObject;
     }
 
+    void OnApplicationQuit() {
+        PlayerPrefs.DeleteAll();
+    }
+
     public void ActiveGameOverUI(float time) {
         gameOverPanel.SetActive(true);
         string minutes = Mathf.Floor(time / 60).ToString("00");
@@ -36,4 +40,6 @@ public class UIGameplayController : MonoBehaviour {
     public void MainMenu() {
         SceneManager.LoadScene(0);
     }
+
+
 }
