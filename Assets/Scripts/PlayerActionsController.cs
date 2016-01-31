@@ -70,8 +70,8 @@ public class PlayerActionsController : MonoBehaviour
             {
                 playerAnimationsController.Idle();
             }
-			if (monkTarget != null) {
-
+            if (monkTarget != null)
+            {
 				monkTarget.GetComponent<MonkRequest> ().CompleteRequest (realCarriedObject);
 				monkTarget = null;
 				if (realCarriedObject)

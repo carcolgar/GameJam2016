@@ -7,21 +7,22 @@ public class Candle : InteractableObject {
     void Start() {
         base.Start();
         ParticleSystem.EmissionModule emission = fireParticles.emission;
-        emission.enabled = true;
+        emission.enabled = false;
     }
 
     public override void StartConflict(MonkRequest monkRequest)
     {
         base.StartConflict(monkRequest);
         ParticleSystem.EmissionModule emission = fireParticles.emission;
-        emission.enabled = false;
+        emission.enabled = !GameManager.SINGLETON.IsFirstTurn;
     }
 
     public override void EndConflict()
     {
         base.EndConflict();
+        Debug.Log("End conflict");
         ParticleSystem.EmissionModule emission = fireParticles.emission;
-        emission.enabled = true;
+        emission.enabled = GameManager.SINGLETON.IsFirstTurn;
     }
 
 }
