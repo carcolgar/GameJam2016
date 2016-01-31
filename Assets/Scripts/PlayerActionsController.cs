@@ -70,7 +70,7 @@ public class PlayerActionsController : MonoBehaviour
             {
                 playerAnimationsController.Idle();
             }
-            if (monkTarget != null && realCarriedObject!= null)
+            if (monkTarget != null)
             {
 				monkTarget.GetComponent<MonkRequest> ().CompleteRequest (realCarriedObject);
 				monkTarget = null;
@@ -115,7 +115,7 @@ public class PlayerActionsController : MonoBehaviour
 
     public void InteractWithObject(GameObject clickable)
     {
-		if (clickable.tag != "Monk" && clickable.GetComponent<PickableObject>()) {
+		if (clickable.tag != "Monk") {
 			carriedObject = clickable;
 		} else {
 			monkTarget = clickable;
