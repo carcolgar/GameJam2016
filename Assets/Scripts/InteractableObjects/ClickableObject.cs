@@ -22,11 +22,6 @@ public class ClickableObject : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// Sonido que reproduce el objeto al interactuar con el
-    /// </summary>
-    public FMODManager.Sounds interactSound = FMODManager.Sounds.NONE;
-
     #endregion
 
     #region UNITY_METHODS
@@ -49,8 +44,7 @@ public class ClickableObject : MonoBehaviour
     /// </summary>
     public virtual void OnClickPressed()
     {
-        FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.PickObject);
-        FMODManager.SINGLETON.PlayOneShot(interactSound);
+
     }
 
     /// <summary>
@@ -58,7 +52,7 @@ public class ClickableObject : MonoBehaviour
     /// </summary>
     public virtual void OnReleasePressed()
     {
-        FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.LeaveObject);
+
     }
 
     #endregion

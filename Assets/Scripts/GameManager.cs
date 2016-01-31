@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     
     // Puntero al componente de control del player
     public PlayerActionsController player = null;
+    
+    private bool _playing = false;
 
     #endregion
     
@@ -90,6 +92,9 @@ public class GameManager : MonoBehaviour
     private void Start () {
         invocationSmoke.gameObject.SetActive(false);
 		_currentLife = life;
+        
+        // FIXME TEST START GAME (BORRAR)
+        StartGame();
     }
 
     /// <summary>
@@ -114,8 +119,8 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }*/
-
-		if (_currentLife <= 0)
+        
+		if (_playing && _currentLife <= 0)
 			GameOver ();
     }
 
@@ -179,12 +184,34 @@ public class GameManager : MonoBehaviour
         avaibleOrders[pos] = true;
     }
 
+
+    /// <summary>
+    /// Funcion llamada al comenzar una partida
+    /// Resetea todo la partida?
+    /// </summary>
+    private void StartGame()
+    {
+        _playing = true;
+        
+        FMODManager.SINGLETON.StopAllSounds();
+        // Sonidos durante la partida
+        FMODManager.SINGLETON.PlaySound(FMODManager.Sounds.Environment, FMODManager.Parameter.Time, 0.0f);
+        FMODManager.SINGLETON.PlaySound(FMODManager.Sounds.Monks, FMODManager.Parameter.Monks, 0.0f);
+    }
+
+
     /// <summary>
     /// Controla el final de partida, playeara la escena de la invocacion 
     /// final
     /// </summary>
     private void GameOver()
     { 
+        _playing = false;
+        
+        FMODManager.SINGLETON.StopAllSounds();
+        // Sonidos de fin de partida
+        FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.GameOver);
+        
         invocationSmoke.gameObject.SetActive(true);
         int i = 0;
         while (i < scoreNeededForNextInvocation.Length && scoreNeededForNextInvocation[i] <= score)

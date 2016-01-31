@@ -1899,7 +1899,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1642647926}
-  interactSound: 0
 --- !u!1 &168312170
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,7 +2635,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1241322382}
-  interactSound: 0
 --- !u!1001 &413421844
 Prefab:
   m_ObjectHideFlags: 0
@@ -8333,7 +8331,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2004178379}
-  interactSound: 0
 --- !u!1 &1023894478
 GameObject:
   m_ObjectHideFlags: 0
@@ -8869,7 +8866,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1819437862}
-  interactSound: 0
 --- !u!4 &1192769232 stripped
 Transform:
   m_PrefabParentObject: {fileID: 489178, guid: 946837cccc917be4a9183f36ed27b59c, type: 2}
@@ -9168,7 +9164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1102913553}
-  interactSound: 0
+  interactSound: 3
 --- !u!4 &1327305686 stripped
 Transform:
   m_PrefabParentObject: {fileID: 489178, guid: 946837cccc917be4a9183f36ed27b59c, type: 2}
@@ -9307,7 +9303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 150215312}
-  interactSound: 0
 --- !u!1001 &1364223349
 Prefab:
   m_ObjectHideFlags: 0
@@ -9721,7 +9716,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1343524898}
-  interactSound: 0
 --- !u!4 &1409907512 stripped
 Transform:
   m_PrefabParentObject: {fileID: 489178, guid: 946837cccc917be4a9183f36ed27b59c, type: 2}
@@ -12879,4 +12873,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1142568226}
-  interactSound: 0
