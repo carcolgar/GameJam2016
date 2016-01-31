@@ -4,27 +4,28 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class UIGameplayController : MonoBehaviour {
+    public Text time;
     public GameObject[] activeEndings;
 
     GameObject gameOverPanel;
-    Text time;
 
     void Start()
     {
-        time = transform.FindChild("Time").GetComponent<Text>();
         gameOverPanel = transform.FindChild("GameOverPanel").gameObject;
     }
 
-    public void ActivePanel(string time) {
+    public void ActiveGameOverUI(float time) {
         gameOverPanel.SetActive(true);
-        this.time.text = time;
+        string minutes = Mathf.Floor(time / 60).ToString("00");
+        string seconds = (time % 60).ToString("00");
+        this.time.text = minutes + ":" + seconds; ;
         ActiveUnlockedEndings();
     }
 
     public void ActiveUnlockedEndings() {
         for (int i = 0; i < activeEndings.Length; i++)
         {
-            activeEndings[i].SetActive(PlayerPrefs.GetInt("Ending" + i) == 1 ? true : false);
+            activeEndings[i].SetActive(PlayerPrefs.GetInt("Ending" + i) == 1 ? false : true);
         }
     }
 
