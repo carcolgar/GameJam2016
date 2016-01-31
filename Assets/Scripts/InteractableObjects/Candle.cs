@@ -7,21 +7,21 @@ public class Candle : InteractableObject {
     void Start() {
         base.Start();
         ParticleSystem.EmissionModule emission = fireParticles.emission;
-        emission.enabled = false;
+        emission.enabled = true;
     }
 
     public override void StartConflict(MonkRequest monkRequest)
     {
         base.StartConflict(monkRequest);
         ParticleSystem.EmissionModule emission = fireParticles.emission;
-        emission.enabled = true;
+        emission.enabled = false;
     }
 
     public override void EndConflict()
     {
         base.EndConflict();
         ParticleSystem.EmissionModule emission = fireParticles.emission;
-        emission.enabled = false;
+        emission.enabled = true;
     }
 
 }

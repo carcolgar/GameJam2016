@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6, y: 0.72, z: 0}
+  m_LocalPosition: {x: 6.48, y: 2.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 402444}
@@ -157,9 +157,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.13576508, y: 0.97751117}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.0861263, y: 3.3351665}
 --- !u!82 &8218426
 AudioSource:
   m_ObjectHideFlags: 1
@@ -262,8 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbab0df92d7de241a4b1b772fbe20ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 8218426}
   image: {fileID: 21279578}
+  interactSound: 0
   doorOpen: {fileID: 21300000, guid: dde40c57ec7f42a41b7e76aee60e92df, type: 3}
   doorClose: {fileID: 21300000, guid: 24eacad337247934f949074a46a54207, type: 3}
   grandma: {fileID: 135054}

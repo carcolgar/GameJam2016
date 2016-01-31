@@ -33,6 +33,9 @@ public class MonkRequest : MonoBehaviour
     
 	public Bubble bubble;
 
+    InteractableObject _currentOrderGOComponent;
+
+
 	#endregion
     
 
@@ -71,17 +74,20 @@ public class MonkRequest : MonoBehaviour
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: CORRECTO!");
             FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestSuccess);
             GameManager.SINGLETON.OrderCompleted(true, _orderIndex);
+            bubble.DisableBubble();
+            ResetBehaviourVars();
+            _currentOrderGOComponent = null;
         }
-        else
+        else if(_currentOrderGOComponent == null)
         {
             // Incorrecto
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: FALLO!");
             FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);
             GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
             GameManager.SINGLETON.BadRequestedReceived();
+            bubble.DisableBubble();
+            ResetBehaviourVars();
         }
-		bubble.DisableBubble ();
-        ResetBehaviourVars();
     } 
     
     /// <summary>
@@ -97,7 +103,7 @@ public class MonkRequest : MonoBehaviour
         Debug.Log("[MonkRequest::MonkBehaviour] Orden pedida");
         // Pedimos la nueva orden
         _currentOrderGO = GameManager.SINGLETON.GetNextOrder(ref _orderIndex);
-        InteractableObject _currentOrderGOComponent = _currentOrderGO.GetComponent<InteractableObject>();
+        _currentOrderGOComponent = _currentOrderGO.GetComponent<InteractableObject>();
         if (_currentOrderGOComponent != null)
         {
             _currentOrderGOComponent.StartConflict(this);
