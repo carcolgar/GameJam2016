@@ -298,7 +298,7 @@ public class GameManager : MonoBehaviour
 
             if (!firstTurn)
             {
-                //MonksHandsUpManager.SINGLETON.enabled = true;
+                MonksHandsUpManager.SINGLETON.enabled = true;
                 for (int i = 0; i < monkRequest.Length; ++i)
                 {
                     monkRequest[i].bubble.DisableBubble();
