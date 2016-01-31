@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour
     /// <param name="pos"></param>
     private void CancelOrder(int pos)
     {
-        avaibleOrders[pos] = true;
+       if(pos != -1) avaibleOrders[pos] = true;
     }
 
 
