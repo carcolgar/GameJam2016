@@ -25,7 +25,7 @@ public class UIGameplayController : MonoBehaviour {
     public void ActiveUnlockedEndings() {
         for (int i = 0; i < activeEndings.Length; i++)
         {
-            activeEndings[i].SetActive(PlayerPrefs.GetInt("Ending" + i) == 1 ? false : true);
+            activeEndings[i].SetActive(PlayerPrefs.GetInt("Ending" + i) == 1 ? true : false);
         }
     }
 
