@@ -94,6 +94,8 @@ public class LifeMonks : MonoBehaviour {
 				if (count == index) {
 					_happyMonks[i] = true;
                     _lifeMonks[i].GetComponent<SpriteRenderer>().sprite = happyFace;
+                    _lifeMonks[i].transform.GetChild(0).gameObject.GetComponent<LensFlare>().enabled = false;
+                    _lifeMonks[i].transform.GetChild(1).gameObject.GetComponent<LensFlare>().enabled = false;
 					break;
 				}
 				count++;

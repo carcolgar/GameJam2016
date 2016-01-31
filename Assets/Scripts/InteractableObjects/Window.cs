@@ -14,9 +14,9 @@ public class Window : InteractableObject
         spriteRenderer = image.GetComponent<SpriteRenderer>();
     }
 
-    public override void StartConflict()
+    public override void StartConflict(MonkRequest monkRequest)
     {
-        base.StartConflict();
+        base.StartConflict(monkRequest);
         spriteRenderer.sprite = windowOpen;
     }
 

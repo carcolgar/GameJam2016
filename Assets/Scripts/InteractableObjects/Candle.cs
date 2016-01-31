@@ -10,9 +10,9 @@ public class Candle : InteractableObject {
         emission.enabled = false;
     }
 
-    public override void StartConflict()
+    public override void StartConflict(MonkRequest monkRequest)
     {
-        base.StartConflict();
+        base.StartConflict(monkRequest);
         ParticleSystem.EmissionModule emission = fireParticles.emission;
         emission.enabled = true;
     }
