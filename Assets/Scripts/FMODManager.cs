@@ -146,7 +146,7 @@ public class FMODManager : MonoBehaviour
     {
         foreach(var pair in _runningSounds)
         {
-            pair.Value.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);            
+            pair.Value.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);            
         }
         
         _runningSounds.Clear();
