@@ -46,7 +46,7 @@ public class MonkRequest : MonoBehaviour
     /// </summary>
 	private void FixedUpdate () 
     {
-        if(_currentCoroutine == null)
+        if(_currentCoroutine == null && GameManager.SINGLETON.Playing)
         {
             _currentCoroutine = MonkBehaviour();
             StartCoroutine(_currentCoroutine);
@@ -151,6 +151,7 @@ public class MonkRequest : MonoBehaviour
                 _currentOrderGO = null;
                 while (GameManager.SINGLETON.Playing) {
                     FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);
+                    GameManager.SINGLETON.DecreaseLife();
                     yield return new WaitForSeconds(Random.Range(minMaxTimeForCompleteRequest.x, minMaxTimeForCompleteRequest.y));
                 }
                 GameManager.SINGLETON.OrderCompleted(false, _orderIndex);                    
@@ -174,7 +175,11 @@ public class MonkRequest : MonoBehaviour
         _currentCoroutine = null;
         _currentOrderGO = null;
         _currentOrderGOComponent = null;
-    }  
+    }
+
+    public void CancelRequest() {
+        StopAllCoroutines();
+    }
     
     #endregion
     

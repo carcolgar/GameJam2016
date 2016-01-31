@@ -268,18 +268,30 @@ public class GameManager : MonoBehaviour
         int i = 0;
         while (i < scoreNeededForNextInvocation.Length && scoreNeededForNextInvocation[i] <= score)
             ++i;
-       if (i >= scoreNeededForNextInvocation.Length) 
-            i = gameOverInvocations.Length-1;
-       gameOverInvocations[i].SetActive(true);
-       PlayerPrefs.SetInt("Ending"+i,1);
-       StartCoroutine("TriggerGameOverUI");
+        if (i >= scoreNeededForNextInvocation.Length)
+        {
+            i = gameOverInvocations.Length - 1;
+            gameOverInvocations[i].SetActive(true);
+            PlayerPrefs.SetInt("Ending" + i, 1);
+        }
+       //DESACTIVAR JUGABILIDAD
+        PlayerPrefs.SetInt("Ending" + i, 1);
+
+        /*for (int j = 0 ; j < monkRequest.Length; i++)
+        {
+            monkRequest[j].GetComponent<MonkRequest>().CancelRequest();
+            monkRequest[j].GetComponent<MonkRequest>().enabled = false;
+        }*/
+        this.GetComponent <InputManager>().enabled = false;
+        this.GetComponent<MonksHandsUpManager>().enabled = false;
+        StartCoroutine("TriggerGameOver");
     }
 
-    private IEnumerator downArmsAndWalk()
+    private IEnumerator TriggerGameOver()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         //PARAR PERSONAJES
-        UIController.ActivePanel(time.ToString());
+        UIController.ActiveGameOverUI(score);
 
     }
     /// <summary>
@@ -298,7 +310,7 @@ public class GameManager : MonoBehaviour
 
             if (!firstTurn)
             {
-                //MonksHandsUpManager.SINGLETON.enabled = true;
+                MonksHandsUpManager.SINGLETON.enabled = true;
                 for (int i = 0; i < monkRequest.Length; ++i)
                 {
                     monkRequest[i].bubble.DisableBubble();
