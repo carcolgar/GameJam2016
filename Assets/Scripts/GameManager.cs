@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
@@ -44,6 +45,9 @@ public class GameManager : MonoBehaviour
     public PlayerActionsController player = null;
     
     private bool _playing = false;
+
+    // Controlador de UI cuando acaba la partida
+    public UIGameplayController UIController;
 
     #endregion
     
@@ -219,8 +223,17 @@ public class GameManager : MonoBehaviour
        if (i >= scoreNeededForNextInvocation.Length) 
             i = gameOverInvocations.Length-1;
        gameOverInvocations[i].SetActive(true);
+       PlayerPrefs.SetInt("Ending"+i,1);
+       StartCoroutine("TriggerGameOverUI");
     }
 
+    private IEnumerator downArmsAndWalk()
+    {
+        yield return new WaitForSeconds(2);
+        //PARAR PERSONAJES
+        UIController.ActivePanel(time.ToString());
+
+    }
     /// <summary>
     /// Funcion a la que llamara al monk request si ha habido timeout
     /// sin exito o si se ha completado la accion

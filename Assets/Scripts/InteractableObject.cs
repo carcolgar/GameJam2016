@@ -3,6 +3,7 @@ using System.Collections;
 
 public class InteractableObject : ClickableObject {
     bool inConflict;
+    MonkRequest monkRequest;
 
     /// <summary>
     /// On click pressed method
@@ -22,14 +23,16 @@ public class InteractableObject : ClickableObject {
         Debug.Log("INTERACTABLE: Click derecho");
     }
 
-    public virtual void StartConflict()
+    public virtual void StartConflict(MonkRequest monkRequest)
     {
+        this.monkRequest = monkRequest;
         inConflict = true;
     }
 
     public virtual void EndConflict()
     {
         inConflict = false;
+        monkRequest.CompleteRequest(this.gameObject);
     }
 
 }
