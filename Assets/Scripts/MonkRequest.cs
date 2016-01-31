@@ -69,13 +69,16 @@ public class MonkRequest : MonoBehaviour
         {
             // Correcto
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: CORRECTO!");
+            FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestSuccess);
             GameManager.SINGLETON.OrderCompleted(true, _orderIndex);
         }
         else
         {
             // Incorrecto
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: FALLO!");
+            FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);
             GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
+            GameManager.SINGLETON.BadRequestedReceived();
         }
 		bubble.DisableBubble ();
         ResetBehaviourVars();
@@ -119,6 +122,8 @@ public class MonkRequest : MonoBehaviour
         }else{
             GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
         }
+        FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);
+
         bubble.DisableBubble ();
         
         ResetBehaviourVars();
