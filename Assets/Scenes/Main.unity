@@ -864,9 +864,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1241322382}
-  startConflictSound: 0
-  runningConflictSound: 0
-  endConflictSound: 0
+  startConflictSound: 4
+  runningConflictSound: 21
+  endConflictSound: 5
 --- !u!1001 &413421844
 Prefab:
   m_ObjectHideFlags: 0
@@ -1876,9 +1876,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2004178379}
-  startConflictSound: 0
-  runningConflictSound: 0
-  endConflictSound: 0
+  startConflictSound: 4
+  runningConflictSound: 8
+  endConflictSound: 5
 --- !u!1001 &1084465588
 Prefab:
   m_ObjectHideFlags: 0
