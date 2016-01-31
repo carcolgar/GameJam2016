@@ -275,8 +275,6 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Ending" + i, 1);
         }
        //DESACTIVAR JUGABILIDAD
-        PlayerPrefs.SetInt("Ending" + i, 1);
-
         /*for (int j = 0 ; j < monkRequest.Length; i++)
         {
             monkRequest[j].GetComponent<MonkRequest>().CancelRequest();
