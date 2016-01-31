@@ -84,6 +84,7 @@ public class MonkRequest : MonoBehaviour
             FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestSuccess);
             GameManager.SINGLETON.OrderCompleted(true, _orderIndex);
             bubble.DisableBubble();
+            GameManager.SINGLETON.player.thinkingBubble.SetActive(false);
             ResetBehaviourVars();
             _currentOrderGOComponent = null;
         }
@@ -95,6 +96,7 @@ public class MonkRequest : MonoBehaviour
             GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
             GameManager.SINGLETON.BadRequestedReceived();
             bubble.DisableBubble();
+            GameManager.SINGLETON.player.thinkingBubble.SetActive(false);
             ResetBehaviourVars();
         }
     } 
@@ -104,6 +106,7 @@ public class MonkRequest : MonoBehaviour
     /// </summary>
     private IEnumerator MonkBehaviour()
     {
+        Debug.Log("MONK BEHAVIOUR");
 
         if (GameManager.SINGLETON.IsFirstTurn)
         {
@@ -170,6 +173,7 @@ public class MonkRequest : MonoBehaviour
     {
         _currentCoroutine = null;
         _currentOrderGO = null;
+        _currentOrderGOComponent = null;
     }  
     
     #endregion
