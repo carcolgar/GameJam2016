@@ -9563,10 +9563,12 @@ MonoBehaviour:
   gameOverInvocations:
   - {fileID: 1121241770}
   - {fileID: 1121241769}
+  - {fileID: 191536, guid: b0d92a8036b57614381c89a623f9c87b, type: 2}
   - {fileID: 1121241768}
   scoreNeededForNextInvocation:
-  - 10
-  - 20
+  - 60
+  - 90
+  - 120
   player: {fileID: 763728361}
   UIController: {fileID: 1036495075}
   firstTurn: 1
@@ -12261,18 +12263,6 @@ Prefab:
     - target: {fileID: 22430098, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11410396, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
-      propertyPath: m_Color.a
-      value: 0.334
-      objectReference: {fileID: 0}
-    - target: {fileID: 176796, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22427136, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 143
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}

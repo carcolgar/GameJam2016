@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21283428}
   - 95: {fileID: 9542772}
   m_Layer: 0
-  m_Name: Grandma
+  m_Name: AngryNannySummon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
