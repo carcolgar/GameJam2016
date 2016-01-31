@@ -44,6 +44,7 @@ public class ClickableObject : MonoBehaviour
     /// </summary>
     public virtual void OnClickPressed()
     {
+        Debug.Log("On clickable pressed");
 
     }
 

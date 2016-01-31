@@ -56,7 +56,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] candles = null;
 
     //Array de velas apagadas
-    private bool[] lightedCandles = null;
+    private int unlightedCandles = 0;
+
+    public MonkRequest[] monkRequest = null;
 
     #endregion
     
@@ -110,6 +112,13 @@ public class GameManager : MonoBehaviour
         
         // FIXME TEST START GAME (BORRAR)
         StartGame();
+
+        //Inicializo el array de ordenes disponibles a true
+        for (int i = 0; i < candles.Length; ++i)
+        {
+            candles[i].GetComponent<InteractableObject>().StartConflict(monkRequest[0]);
+        }
+
     }
 
     /// <summary>
@@ -157,12 +166,8 @@ public class GameManager : MonoBehaviour
             avaibleOrders.Add(true);
         }
 
-        //Inicializo el array de velas apagadas a true
-        lightedCandles = new bool[candles.Length];
-        for (int i = 0; i < lightedCandles.Length; ++i)
-        {
-            lightedCandles[i] = false;
-        }
+        //Todas las velas apagadas
+        unlightedCandles = candles.Length;
 
     }
 
@@ -271,30 +276,37 @@ public class GameManager : MonoBehaviour
     {
         if (firstTurn)
         {
-            firstTurn = !lightedCandles[0];
-            for (int i = 1; i < lightedCandles.Length; ++i)
-                firstTurn |= !lightedCandles[i];
+            --unlightedCandles;
+            firstTurn = (unlightedCandles > 0);
+            Debug.Log("Primer turno: " + firstTurn);
 
-            if (!firstTurn) MonksHandsUpManager.SINGLETON.enabled = true;
+            if (!firstTurn)
+            {
+                MonksHandsUpManager.SINGLETON.enabled = true;
+                for (int i = 0; i < monkRequest.Length; ++i)
+                {
+                    monkRequest[i].bubble.DisableBubble();
+                    monkRequest[i].ResetBehaviourVars();
+                }
+                return;
+            }
 
-            return;
+            if (!successfully)
+            {
+                _currentLife -= pointsToRestWithTimeout;
+                lifeMonksComponent.LifeLost();
+            }
+            else
+            {
+                if (_currentLife < life)
+                {
+                    _currentLife += pointsToRestWithBadObject;
+                    lifeMonksComponent.LifeGained();
+                }
+            }
 
+            CancelOrder(pos);
         }
-
-        if (!successfully)
-        {
-            _currentLife -= pointsToRestWithTimeout;
-            lifeMonksComponent.LifeLost();
-        }
-        else
-        {
-			if (_currentLife < life) {
-				_currentLife += pointsToRestWithBadObject;
-				lifeMonksComponent.LifeGained ();
-			}
-        }
-        
-        CancelOrder(pos);
     }
 
     /// <summary>

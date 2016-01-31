@@ -41,7 +41,16 @@ public class InputManager : MonoBehaviour
 
                 if (clickable = hit.collider.gameObject.GetComponent<ClickableObject>())
                 {
-                    GameManager.SINGLETON.Player.InteractWithObject(clickable.gameObject);
+                    if ((GameManager.SINGLETON.IsFirstTurn && hit.collider.gameObject.GetComponent<Candle>())
+                         || !GameManager.SINGLETON.IsFirstTurn)
+                    {
+                        Debug.Log("Interactuando!");
+                        GameManager.SINGLETON.Player.InteractWithObject(clickable.gameObject);
+                    }
+                    else if (GameManager.SINGLETON.IsFirstTurn)
+                    {
+                        FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);
+                    }
                 }
                 // TODO: Llamar a quien le importe CLICK IZQUIERDO
             }
