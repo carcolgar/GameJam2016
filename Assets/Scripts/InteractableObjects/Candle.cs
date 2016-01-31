@@ -19,10 +19,10 @@ public class Candle : InteractableObject {
 
     public override void EndConflict()
     {
-        base.EndConflict();
-        Debug.Log("End conflict");
         ParticleSystem.EmissionModule emission = fireParticles.emission;
         emission.enabled = GameManager.SINGLETON.IsFirstTurn;
+        base.EndConflict();
+        Debug.Log("End conflict");
     }
 
 }
