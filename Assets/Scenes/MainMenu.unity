@@ -853,7 +853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "H\xE9ctor"
+  m_Text: "H\xE9ctor Su\xE1rez"
 --- !u!222 &732924455
 CanvasRenderer:
   m_ObjectHideFlags: 0
