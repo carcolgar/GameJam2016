@@ -9563,10 +9563,12 @@ MonoBehaviour:
   gameOverInvocations:
   - {fileID: 1121241770}
   - {fileID: 1121241769}
+  - {fileID: 191536, guid: b0d92a8036b57614381c89a623f9c87b, type: 2}
   - {fileID: 1121241768}
   scoreNeededForNextInvocation:
-  - 10
-  - 20
+  - 60
+  - 90
+  - 120
   player: {fileID: 763728361}
   UIController: {fileID: 1036495075}
   firstTurn: 1
