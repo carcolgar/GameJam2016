@@ -1900,6 +1900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 1748590878}
   image: {fileID: 1642647926}
+  interactSound: 0
 --- !u!1 &168312170
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,6 +2639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 960981178}
   image: {fileID: 1241322382}
+  interactSound: 0
 --- !u!1 &408393904
 GameObject:
   m_ObjectHideFlags: 0
@@ -4867,6 +4869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 408393906}
   image: {fileID: 1722873018}
+  interactSound: 0
 --- !u!1 &728411771
 GameObject:
   m_ObjectHideFlags: 0
@@ -8646,6 +8649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 2050147285}
   image: {fileID: 2004178379}
+  interactSound: 0
 --- !u!1 &1023894478
 GameObject:
   m_ObjectHideFlags: 0
@@ -9283,6 +9287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 1557847988}
   image: {fileID: 1819437862}
+  interactSound: 0
 --- !u!4 &1192769232 stripped
 Transform:
   m_PrefabParentObject: {fileID: 489178, guid: 946837cccc917be4a9183f36ed27b59c, type: 2}
@@ -9583,6 +9588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 482078022}
   image: {fileID: 1102913553}
+  interactSound: 0
 --- !u!4 &1327305686 stripped
 Transform:
   m_PrefabParentObject: {fileID: 489178, guid: 946837cccc917be4a9183f36ed27b59c, type: 2}
@@ -9722,6 +9728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 217578648}
   image: {fileID: 150215312}
+  interactSound: 0
 --- !u!1001 &1364223349
 Prefab:
   m_ObjectHideFlags: 0
@@ -10136,6 +10143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 1619807807}
   image: {fileID: 1343524898}
+  interactSound: 0
 --- !u!4 &1409907512 stripped
 Transform:
   m_PrefabParentObject: {fileID: 489178, guid: 946837cccc917be4a9183f36ed27b59c, type: 2}
@@ -10367,6 +10375,13 @@ MonoBehaviour:
   - 10
   - 20
   player: {fileID: 1996814471}
+  firstTurn: 1
+  candles:
+  - {fileID: 2147068679}
+  - {fileID: 1354816414}
+  - {fileID: 167841806}
+  - {fileID: 1179722308}
+  - {fileID: 1400644576}
 --- !u!4 &1556264892
 Transform:
   m_ObjectHideFlags: 0
@@ -10929,6 +10944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 1062544137}
   image: {fileID: 1387284491}
+  interactSound: 0
 --- !u!1 &1722873015
 GameObject:
   m_ObjectHideFlags: 0
@@ -13398,3 +13414,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 1630770148}
   image: {fileID: 1142568226}
+  interactSound: 0
