@@ -50,12 +50,24 @@ public class GameManager : MonoBehaviour
     public UIGameplayController UIController;
     
     private float _currentMonkParam = 0.0f;
+
+    //Booleano para controlar si es el primer turno de partida
+    public bool firstTurn = true;
+
+    //Puntero a las velas para encenderlas en el primr turno
+    public GameObject[] candles = null;
+
+    //Array de velas apagadas
+    private bool[] lightedCandles = null;
+
     #endregion
     
     
     #region PROPERTIES
     
     public PlayerActionsController Player { get {return player;} }
+
+    public bool IsFirstTurn { get { return firstTurn; } }
     
     #endregion
     
@@ -152,11 +164,19 @@ public class GameManager : MonoBehaviour
     {
         avaibleOrders = new List<bool>();
 
-        //Inicializo el array de booleanos a true
+        //Inicializo el array de ordenes disponibles a true
         for (int i = 0; i < orders.Count; ++i)
         {
             avaibleOrders.Add(true);
         }
+
+        //Inicializo el array de velas apagadas a true
+        lightedCandles = new bool[candles.Length];
+        for (int i = 0; i < lightedCandles.Length; ++i)
+        {
+            lightedCandles[i] = false;
+        }
+
     }
 
     /// <summary>
@@ -182,13 +202,21 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public GameObject GetNextOrder(ref int pos)
     {
-        pos = Random.Range(0, orders.Count - 1);
-        while (!avaibleOrders[pos])
+        if (firstTurn)
         {
-            pos = (pos + 1) % orders.Count;
-        };
-		avaibleOrders [pos] = false;
-        return orders[pos];
+            pos = -1;
+            return candles[0];
+        }
+        else
+        {
+            pos = Random.Range(0, orders.Count - 1);
+            while (!avaibleOrders[pos])
+            {
+                pos = (pos + 1) % orders.Count;
+            };
+            avaibleOrders[pos] = false;
+            return orders[pos];
+        }
     }
 
     /// <summary>
@@ -255,6 +283,18 @@ public class GameManager : MonoBehaviour
     /// <param name="pos"></param>
     public void OrderCompleted(bool successfully, int pos)
     {
+        if (firstTurn)
+        {
+            firstTurn = !lightedCandles[0];
+            for (int i = 1; i < lightedCandles.Length; ++i)
+                firstTurn |= !lightedCandles[i];
+
+            if (!firstTurn) MonksHandsUpManager.SINGLETON.enabled = true;
+
+            return;
+
+        }
+
         if (!successfully)
         {
             _currentLife -= pointsToRestWithTimeout;
@@ -277,8 +317,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void BadRequestedReceived()
     {
-		_currentLife -= pointsToRestWithBadObject;
-        lifeMonksComponent.LifeLost();
+        if (!firstTurn)
+        {
+            _currentLife -= pointsToRestWithBadObject;
+            lifeMonksComponent.LifeLost();
+        }
     }
     
     #endregion

@@ -33,6 +33,9 @@ public class MonkRequest : MonoBehaviour
     
 	public Bubble bubble;
 
+    InteractableObject _currentOrderGOComponent;
+
+
 	#endregion
     
 
@@ -62,8 +65,17 @@ public class MonkRequest : MonoBehaviour
     public void CompleteRequest(GameObject resultGO)
     {
         // Detenemos el comportamiento actual
-        StopCoroutine(_currentCoroutine);        
+        StopCoroutine(_currentCoroutine);
         
+        //Si estamos en el primer tunro
+        if (_orderIndex == -1)
+        {
+            Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: CORRECTO!");
+            FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestSuccess);
+            GameManager.SINGLETON.OrderCompleted(true, _orderIndex);
+            return;
+        }
+
         // Comprobamos resultado
         if(_currentOrderGO!=null && _currentOrderGO == resultGO)
         {
@@ -71,17 +83,20 @@ public class MonkRequest : MonoBehaviour
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: CORRECTO!");
             FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestSuccess);
             GameManager.SINGLETON.OrderCompleted(true, _orderIndex);
+            bubble.DisableBubble();
+            ResetBehaviourVars();
+            _currentOrderGOComponent = null;
         }
-        else
+        else if(_currentOrderGOComponent == null)
         {
             // Incorrecto
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: FALLO!");
             FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);
             GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
             GameManager.SINGLETON.BadRequestedReceived();
+            bubble.DisableBubble();
+            ResetBehaviourVars();
         }
-		bubble.DisableBubble ();
-        ResetBehaviourVars();
     } 
     
     /// <summary>
@@ -89,44 +104,59 @@ public class MonkRequest : MonoBehaviour
     /// </summary>
     private IEnumerator MonkBehaviour()
     {
-        Debug.Log("[MonkRequest::MonkBehaviour] Esperando");
-        
-        // Espera hasta pedir nueva orden
-        yield return new WaitForSeconds(Random.Range(minMaxTimeWithoutRequest.x, minMaxTimeWithoutRequest.y));
-        
-        Debug.Log("[MonkRequest::MonkBehaviour] Orden pedida");
-        // Pedimos la nueva orden
-        _currentOrderGO = GameManager.SINGLETON.GetNextOrder(ref _orderIndex);
-        InteractableObject _currentOrderGOComponent = _currentOrderGO.GetComponent<InteractableObject>();
-        if (_currentOrderGOComponent != null)
-        {
-            _currentOrderGOComponent.StartConflict(this);
-        }
-		bubble.ActivateBubble (_currentOrderGO.GetComponentInChildren<SpriteRenderer> ());
-        
-        FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.Request);
-        
-        // Mostramos la informacion de la orden
-        // @TODO
-        
-        Debug.Log("[MonkRequest::MonkBehaviour] Esperando cumplirla");
-        // Contador hasta final de tiempo hasta cumplir la orden
-        yield return new WaitForSeconds(Random.Range(minMaxTimeForCompleteRequest.x, minMaxTimeForCompleteRequest.y));
-        
-        Debug.Log("[MonkRequest::MonkBehaviour] Orden Timeout");
-        // Orden fallida!
-        if (_currentOrderGOComponent != null)
-        {
-            _currentOrderGO = null;
-            _currentOrderGOComponent.EndConflict();
-        }else{
-            GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
-        }
-        FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);
 
-        bubble.DisableBubble ();
+        if (GameManager.SINGLETON.IsFirstTurn)
+        {
+            // Pedimos la nueva orden
+            _currentOrderGO = GameManager.SINGLETON.GetNextOrder(ref _orderIndex);
+
+            bubble.ActivateBubble(_currentOrderGO.GetComponentInChildren<SpriteRenderer>());
+
+            FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.Request);
+
+        }
+        else { 
+            Debug.Log("[MonkRequest::MonkBehaviour] Esperando");
         
-        ResetBehaviourVars();
+            // Espera hasta pedir nueva orden
+            yield return new WaitForSeconds(Random.Range(minMaxTimeWithoutRequest.x, minMaxTimeWithoutRequest.y));
+        
+
+            Debug.Log("[MonkRequest::MonkBehaviour] Orden pedida");
+            // Pedimos la nueva orden
+            _currentOrderGO = GameManager.SINGLETON.GetNextOrder(ref _orderIndex);
+            InteractableObject _currentOrderGOComponent = _currentOrderGO.GetComponent<InteractableObject>();
+            if (_currentOrderGOComponent != null)
+            {
+                _currentOrderGOComponent.StartConflict(this);
+            }
+		    bubble.ActivateBubble (_currentOrderGO.GetComponentInChildren<SpriteRenderer> ());
+
+        
+            FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.Request);
+        
+            // Mostramos la informacion de la orden
+            // @TODO
+        
+            Debug.Log("[MonkRequest::MonkBehaviour] Esperando cumplirla");
+            // Contador hasta final de tiempo hasta cumplir la orden
+            yield return new WaitForSeconds(Random.Range(minMaxTimeForCompleteRequest.x, minMaxTimeForCompleteRequest.y));
+
+            Debug.Log("[MonkRequest::MonkBehaviour] Orden Timeout");
+            // Orden fallida!
+            if (_currentOrderGOComponent != null)
+            {
+                _currentOrderGO = null;
+                _currentOrderGOComponent.EndConflict();
+            }else{
+                GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
+            }
+            FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);
+
+            bubble.DisableBubble ();
+        
+            ResetBehaviourVars();
+        }
     }
     
     
