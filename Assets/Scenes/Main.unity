@@ -5564,6 +5564,18 @@ Prefab:
       propertyPath: thinkingBubbleImage
       value: 
       objectReference: {fileID: 809521132}
+    - target: {fileID: 6193404, guid: 0006eabc1fb0d72438c1404184f30f0d, type: 2}
+      propertyPath: m_Size.x
+      value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193404, guid: 0006eabc1fb0d72438c1404184f30f0d, type: 2}
+      propertyPath: m_Size.y
+      value: 2.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193404, guid: 0006eabc1fb0d72438c1404184f30f0d, type: 2}
+      propertyPath: m_Offset.x
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0006eabc1fb0d72438c1404184f30f0d, type: 2}
   m_IsPrefabParent: 0
@@ -12263,6 +12275,34 @@ Prefab:
     - target: {fileID: 22430098, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462950, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1036495075}
+    - target: {fileID: 11462950, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 22493236, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 165
+      objectReference: {fileID: 0}
+    - target: {fileID: 22465320, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -192
+      objectReference: {fileID: 0}
+    - target: {fileID: 22465320, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 22493236, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 176796, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd44b5e2c2183244690ab62ecaf94b13, type: 2}
