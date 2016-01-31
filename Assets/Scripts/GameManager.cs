@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
 
     public bool IsFirstTurn { get { return firstTurn; } }
     
+    public bool Playing { get { return _playing; }}
+    
     #endregion
     
     
