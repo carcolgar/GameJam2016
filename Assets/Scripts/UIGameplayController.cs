@@ -14,6 +14,10 @@ public class UIGameplayController : MonoBehaviour {
         gameOverPanel = transform.FindChild("GameOverPanel").gameObject;
     }
 
+    void OnApplicationQuit() {
+        PlayerPrefs.DeleteAll();
+    }
+
     public void ActiveGameOverUI(float time) {
         gameOverPanel.SetActive(true);
         string minutes = Mathf.Floor(time / 60).ToString("00");
@@ -25,7 +29,7 @@ public class UIGameplayController : MonoBehaviour {
     public void ActiveUnlockedEndings() {
         for (int i = 0; i < activeEndings.Length; i++)
         {
-            activeEndings[i].SetActive(PlayerPrefs.GetInt("Ending" + i) == 1 ? false : true);
+            activeEndings[i].SetActive(PlayerPrefs.GetInt("Ending" + i) == 1 ? true : false);
         }
     }
 
@@ -36,4 +40,6 @@ public class UIGameplayController : MonoBehaviour {
     public void MainMenu() {
         SceneManager.LoadScene(0);
     }
+
+
 }

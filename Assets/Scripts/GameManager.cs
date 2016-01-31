@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        
+        score += Time.deltaTime;
         _currentTime += Time.deltaTime;
         /*
         if (_currentTime >= time)
@@ -150,7 +150,6 @@ public class GameManager : MonoBehaviour
         
 		if (_playing)
         {
-            score += Time.deltaTime;
             // Actualizamos el parametro del sonido de entorno y monjes
             _currentMonkParam = Mathf.Lerp(_currentMonkParam, life - _currentLife, 0.05f);
             FMODManager.SINGLETON.ChangeParameterValue(FMODManager.Sounds.Monks, FMODManager.Parameter.Monks, _currentMonkParam);
@@ -272,11 +271,10 @@ public class GameManager : MonoBehaviour
         if (i >= scoreNeededForNextInvocation.Length)
         {
             i = gameOverInvocations.Length - 1;
+            gameOverInvocations[i].SetActive(true);
+            PlayerPrefs.SetInt("Ending" + i, 1);
         }
-        gameOverInvocations[i].SetActive(true);
-        PlayerPrefs.SetInt("Ending" + i, 1);
        //DESACTIVAR JUGABILIDAD
-
         /*for (int j = 0 ; j < monkRequest.Length; i++)
         {
             monkRequest[j].GetComponent<MonkRequest>().CancelRequest();
