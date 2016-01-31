@@ -110,6 +110,9 @@ public class FMODManager : MonoBehaviour
     
     public void ChangeParameterValue(Sounds soundEventName, Parameter parameterName, float parameterValue)
     {
+        if(soundEventName == Sounds.NONE)
+            return;
+        
         if(!_runningSounds.ContainsKey(soundEventName.ToString()))
         {
             Debug.LogWarning("[FMODManager::ChangeParameterValue] El sonido '"+soundEventName.ToString()+"' no se esta reproduciendo reproduciendo");
@@ -124,6 +127,9 @@ public class FMODManager : MonoBehaviour
     
     public void StopSound(Sounds soundEventName)
     {
+        if(soundEventName == Sounds.NONE)
+            return;
+        
         if(!_runningSounds.ContainsKey(soundEventName.ToString()))
         {
             Debug.LogWarning("[FMODManager::StopSound] El sonido '"+soundEventName.ToString()+"' no se esta reproduciendo reproduciendo");
