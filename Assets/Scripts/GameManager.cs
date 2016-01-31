@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
 
     public bool IsFirstTurn { get { return firstTurn; } }
     
+    public bool Playing { get { return _playing; }}
+    
     #endregion
     
     
@@ -305,7 +307,8 @@ public class GameManager : MonoBehaviour
             --unlightedCandles;
             firstTurn = (unlightedCandles > 0);
             Debug.Log("Primer turno: " + firstTurn);
-             if (!firstTurn)
+
+            if (!firstTurn)
             {
                 //MonksHandsUpManager.SINGLETON.enabled = true;
                 for (int i = 0; i < monkRequest.Length; ++i)
