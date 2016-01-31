@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -25,7 +26,7 @@ public class PlayerActionsController : MonoBehaviour
     public GameObject thinkingBubble;
 
     //Burbuja de pensamiento a quien entregar las cosas
-    public SpriteRenderer thinkingBubbleImage;
+    public Image thinkingBubbleImage;
 
     // Objeto que lleva el jugador 
     GameObject carriedObject;
