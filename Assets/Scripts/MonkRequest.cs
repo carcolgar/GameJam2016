@@ -69,12 +69,15 @@ public class MonkRequest : MonoBehaviour
         {
             // Correcto
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: CORRECTO!");
+            FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestSuccess);
             GameManager.SINGLETON.OrderCompleted(true, _orderIndex);
         }
         else
         {
             // Incorrecto
             Debug.Log("[MonkRequest::MonkBehaviour] Completando peticion: FALLO!");
+            FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);
+            GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
             GameManager.SINGLETON.BadRequestedReceived();
         }
 		bubble.DisableBubble ();
@@ -107,6 +110,7 @@ public class MonkRequest : MonoBehaviour
         
         Debug.Log("[MonkRequest::MonkBehaviour] Orden Timeout");
         // Orden fallida!
+        FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestFail);
         GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
 		bubble.DisableBubble ();
         

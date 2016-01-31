@@ -5,36 +5,38 @@ public class FMODManager : MonoBehaviour
 {
     #region CONSTANTS
     
-    public sealed class Sounds
+    public enum Sounds
     {
-        public static string Cat = "Cat";
-        public static string Chicken = "Chicken";
-        public static string Dog = "Dog";
-        public static string DoorWindowOpen = "DoorWindowOpen";
-        public static string DoorWindowClose = "DoorWindowClose";
-        public static string Environment = "Environment";
-        public static string GameOver = "GameOver";
-        public static string Grandma = "Grandma";
-        public static string HandsOn = "HandsOn";
-        public static string LeaveObject = "LeaveObject";
-        public static string MainMenu = "MainMenu";
-        public static string Monks = "Monks";
-        public static string OffCandle = "OffCandle";
-        public static string OnCandle = "OnCandle";
-        public static string PickObject = "PickObject";
-        public static string PlayerStep = "PlayerStep";
-        public static string Radio = "Radio";
-        public static string Request = "Request";        
-        public static string RequestFail = "RequestFail";
-        public static string RequestSuccess = "RequestSuccess";
-        public static string Teletubies = "Teletubies";
-        public static string WashingMachine = "WashingMachine";
+        NONE,
+        Cat,
+        Chicken,
+        Dog,
+        DoorWindowOpen,
+        DoorWindowClose,
+        Environment,
+        GameOver,
+        Grandma,
+        HandsOn,
+        LeaveObject,
+        MainMenu,
+        Monks,
+        OffCandle,
+        OnCandle,
+        PickObject,
+        PlayerStep,
+        Radio,
+        Request,        
+        RequestFail,
+        RequestSuccess,
+        Teletubies,
+        WashingMachine,
     }
     
-    public sealed class Parameter
+    public enum Parameter
     {
-        public static string Time = "Time";
-        public static string Monks = "Monks";
+        NONE,
+        Time,
+        Monks,
     }
     
     
@@ -76,58 +78,62 @@ public class FMODManager : MonoBehaviour
     
     #region CUSTOM_METHODS
     
-    public void PlayOneShot(string soundEventName)
+    public void PlayOneShot(Sounds soundEventName)
     {
-        FMODUnity.RuntimeManager.PlayOneShot(_eventsPath + soundEventName);
+        if(soundEventName!=Sounds.NONE)
+            FMODUnity.RuntimeManager.PlayOneShot(_eventsPath + soundEventName.ToString());
     }
     
-    public void PlaySound(string soundEventName, string parameterName = "", float parameterValue = 0.0f)
+    public void PlaySound(Sounds soundEventName, Parameter parameterName = Parameter.NONE, float parameterValue = 0.0f)
     {
-        if(_runningSounds.ContainsKey(soundEventName))
+        if(soundEventName == Sounds.NONE)
+            return;
+        
+        if(_runningSounds.ContainsKey(soundEventName.ToString()))
         {
-            Debug.LogWarning("[FMODManager::PlaySound] El sonido '"+soundEventName+"' ya se esta reproduciendo");
+            Debug.LogWarning("[FMODManager::PlaySound] El sonido '"+soundEventName.ToString()+"' ya se esta reproduciendo");
             return;
         }
         
-        FMOD.Studio.EventInstance fmodEvent = FMODUnity.RuntimeManager.CreateInstance(_eventsPath+soundEventName);
+        FMOD.Studio.EventInstance fmodEvent = FMODUnity.RuntimeManager.CreateInstance(_eventsPath+soundEventName.ToString());
         fmodEvent.start();
         
-        _runningSounds.Add(soundEventName, fmodEvent);
+        _runningSounds.Add(soundEventName.ToString(), fmodEvent);
         
-        if(parameterName!="")
+        if(parameterName!=Parameter.NONE)
         {
             FMOD.Studio.ParameterInstance parameter;
-            fmodEvent.getParameter(parameterName, out parameter);
+            fmodEvent.getParameter(parameterName.ToString(), out parameter);
             parameter.setValue(parameterValue);
         }
     }
     
-    public void ChangeParameterValue(string soundEventName, string parameterName, float parameterValue)
+    public void ChangeParameterValue(Sounds soundEventName, Parameter parameterName, float parameterValue)
     {
-        if(!_runningSounds.ContainsKey(soundEventName))
+        if(!_runningSounds.ContainsKey(soundEventName.ToString()))
         {
-            Debug.LogWarning("[FMODManager::ChangeParameterValue] El sonido '"+soundEventName+"' no se esta reproduciendo reproduciendo");
+            Debug.LogWarning("[FMODManager::ChangeParameterValue] El sonido '"+soundEventName.ToString()+"' no se esta reproduciendo reproduciendo");
             return;
         }
         
-        FMOD.Studio.EventInstance fmodEvent = _runningSounds[soundEventName];
+        FMOD.Studio.EventInstance fmodEvent = _runningSounds[soundEventName.ToString()];
         FMOD.Studio.ParameterInstance parameter;
-        fmodEvent.getParameter(parameterName, out parameter);
+        fmodEvent.getParameter(parameterName.ToString(), out parameter);
         parameter.setValue(parameterValue);
     }
     
-    public void StopSound(string soundEventName)
+    public void StopSound(Sounds soundEventName)
     {
-        if(!_runningSounds.ContainsKey(soundEventName))
+        if(!_runningSounds.ContainsKey(soundEventName.ToString()))
         {
-            Debug.LogWarning("[FMODManager::StopSound] El sonido '"+soundEventName+"' no se esta reproduciendo reproduciendo");
+            Debug.LogWarning("[FMODManager::StopSound] El sonido '"+soundEventName.ToString()+"' no se esta reproduciendo reproduciendo");
             return;
         }
         
-        FMOD.Studio.EventInstance fmodEvent = _runningSounds[soundEventName];
+        FMOD.Studio.EventInstance fmodEvent = _runningSounds[soundEventName.ToString()];
         fmodEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         
-        _runningSounds.Remove(soundEventName);
+        _runningSounds.Remove(soundEventName.ToString());
     }
     
     public void StopAllSounds()
