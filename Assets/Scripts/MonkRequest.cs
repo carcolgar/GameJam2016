@@ -113,7 +113,6 @@ public class MonkRequest : MonoBehaviour
             bubble.ActivateBubble(_currentOrderGO.GetComponentInChildren<SpriteRenderer>());
 
             FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.Request);
-
         }
         else { 
             Debug.Log("[MonkRequest::MonkBehaviour] Esperando");
@@ -163,7 +162,7 @@ public class MonkRequest : MonoBehaviour
     /// <summary>
     /// Resetea las varibles del comportamiento del monje (llamar al terminar comportamientos)
     /// </summary>
-    private void ResetBehaviourVars()
+    public void ResetBehaviourVars()
     {
         _currentCoroutine = null;
         _currentOrderGO = null;

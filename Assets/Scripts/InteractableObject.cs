@@ -29,6 +29,7 @@ public class InteractableObject : ClickableObject {
     /// </summary>
     public override void OnClickPressed()
     {
+        Debug.Log("On click");
         if (inConflict) {
             EndConflict();
         }
