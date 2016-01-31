@@ -38,6 +38,7 @@ public class UIGameplayController : MonoBehaviour {
     }
 
     public void MainMenu() {
+        FMODManager.SINGLETON.StopAllSounds();
         SceneManager.LoadScene(0);
     }
 
