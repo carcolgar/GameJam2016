@@ -14,12 +14,11 @@ public class Grandma : InteractableObject
         base.Start();
         spriteRenderer = image.GetComponent<SpriteRenderer>();
         grandma.SetActive(false);
-        StartConflict();
     }
 
-    public override void StartConflict()
+    public override void StartConflict(MonkRequest monkRequest)
     {
-        base.StartConflict();
+        base.StartConflict(monkRequest);
         spriteRenderer.sprite = doorOpen;
         grandma.SetActive(true);
     }

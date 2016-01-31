@@ -143,7 +143,6 @@ public class PlayerActionsController : MonoBehaviour
         isRisingArms = false;
         yield return new WaitForSeconds(0.25f);
         playerAnimationsController.Walk();
-        
     }
     
     #endregion
