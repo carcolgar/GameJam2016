@@ -271,11 +271,10 @@ public class GameManager : MonoBehaviour
         if (i >= scoreNeededForNextInvocation.Length)
         {
             i = gameOverInvocations.Length - 1;
+            gameOverInvocations[i].SetActive(true);
+            PlayerPrefs.SetInt("Ending" + i, 1);
         }
-        gameOverInvocations[i].SetActive(true);
-        PlayerPrefs.SetInt("Ending" + i, 1);
        //DESACTIVAR JUGABILIDAD
-
         /*for (int j = 0 ; j < monkRequest.Length; i++)
         {
             monkRequest[j].GetComponent<MonkRequest>().CancelRequest();
