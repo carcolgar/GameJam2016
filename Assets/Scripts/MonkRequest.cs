@@ -33,6 +33,8 @@ public class MonkRequest : MonoBehaviour
     
 	public Bubble bubble;
 
+    public GameObject thinkingBubble;
+
     InteractableObject _currentOrderGOComponent;
 
 
@@ -84,6 +86,7 @@ public class MonkRequest : MonoBehaviour
             FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.RequestSuccess);
             GameManager.SINGLETON.OrderCompleted(true, _orderIndex);
             bubble.DisableBubble();
+            thinkingBubble.SetActive(false);
             ResetBehaviourVars();
             _currentOrderGOComponent = null;
         }
@@ -95,6 +98,7 @@ public class MonkRequest : MonoBehaviour
             GameManager.SINGLETON.OrderCompleted(false, _orderIndex);
             GameManager.SINGLETON.BadRequestedReceived();
             bubble.DisableBubble();
+            GameManager.SINGLETON.player.thinkingBubble.SetActive(false);
             ResetBehaviourVars();
         }
     } 

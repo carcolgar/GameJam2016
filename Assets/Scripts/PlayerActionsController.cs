@@ -21,6 +21,12 @@ public class PlayerActionsController : MonoBehaviour
     //Controlador de animaciones
     public PlayerAnimationsController playerAnimationsController;
 
+    //Burbuja de pensamiento a quien entregar las cosas
+    public GameObject thinkingBubble;
+
+    //Burbuja de pensamiento a quien entregar las cosas
+    public SpriteRenderer thinkingBubbleImage;
+
     // Objeto que lleva el jugador 
     GameObject carriedObject;
     public GameObject CarriedObject
@@ -121,6 +127,11 @@ public class PlayerActionsController : MonoBehaviour
 			monkTarget = clickable;
 		}
 		isMovingToCarry = true;
+
+        if (clickable.GetComponent<PickableObject>()) {
+            thinkingBubbleImage.sprite = clickable.GetComponentInChildren<SpriteRenderer>().sprite;
+            thinkingBubble.SetActive(true);
+        }
         
         targetPosition = clickable.GetComponent<ClickableObject>().TakeObjectPosition;
         rotatePlayerIfNeeded();      
