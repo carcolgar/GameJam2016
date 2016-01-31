@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Walkable
   - Clickable
+  - LifeMonk
+  - Monk
   layers:
   - Default
   - TransparentFX

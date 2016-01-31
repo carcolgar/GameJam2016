@@ -10,6 +10,8 @@ public class PlayerActionsController : MonoBehaviour
     public float speed = 5;
     
     private bool isFacingRight = false;
+
+	private GameObject monkTarget = null;
     
     // Vector usado para rotar el sprite cuando cambia de dirección
     private Vector3 rotationVector = new Vector3(0,180,0);
@@ -32,6 +34,8 @@ public class PlayerActionsController : MonoBehaviour
             carriedObject = value;
         }
     }
+
+	public GameObject realCarriedObject = null;
     
     public bool HasHandsUp {
         get { return isRisingArms; }
@@ -66,10 +70,23 @@ public class PlayerActionsController : MonoBehaviour
             {
                 playerAnimationsController.Idle();
             }
+			if (monkTarget != null) {
+
+				monkTarget.GetComponent<MonkRequest> ().CompleteRequest (realCarriedObject);
+				monkTarget = null;
+				if (realCarriedObject)
+					realCarriedObject.SetActive (true);
+				realCarriedObject = null;
+			}
             if (carriedObject != null && isMovingToCarry)
             {
                 isMovingToCarry = false;
-                carriedObject.GetComponent<ClickableObject>().OnClickPressed();
+				if (realCarriedObject != null)
+					realCarriedObject.SetActive (true);
+				
+				carriedObject.GetComponent<ClickableObject>().OnClickPressed();
+				carriedObject = null;
+			
                 playerAnimationsController.ÍnteractWithObject();
             }
         }
@@ -80,7 +97,6 @@ public class PlayerActionsController : MonoBehaviour
     //ACCIONES
     public void WalkToPoint(Vector2 targetPoint)
     {
-        Debug.Log("WalkToPoint");
         targetPosition = targetPoint;
         //Call WALK animation
         rotatePlayerIfNeeded();
@@ -92,7 +108,6 @@ public class PlayerActionsController : MonoBehaviour
 
     public void RiseArms()
     {
-        Debug.Log("Animate Arms");
         isRisingArms = true;
         ///Call RISEARMS animation
         playerAnimationsController.RiseArms();
@@ -100,8 +115,13 @@ public class PlayerActionsController : MonoBehaviour
 
     public void InteractWithObject(GameObject clickable)
     {
-        isMovingToCarry = true;
-        carriedObject = clickable;
+		if (clickable.tag != "Monk") {
+			carriedObject = clickable;
+		} else {
+			monkTarget = clickable;
+		}
+		isMovingToCarry = true;
+        
         targetPosition = clickable.GetComponent<ClickableObject>().TakeObjectPosition;
         rotatePlayerIfNeeded();      
         if (isRisingArms) {
