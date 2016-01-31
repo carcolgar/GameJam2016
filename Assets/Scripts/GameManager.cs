@@ -280,6 +280,16 @@ public class GameManager : MonoBehaviour
             monkRequest[j].GetComponent<MonkRequest>().CancelRequest();
             monkRequest[j].GetComponent<MonkRequest>().enabled = false;
         }*/
+        
+        switch(i) {
+            case 0:
+                FMODManager.SINGLETON.PlayOneShot(FMODManager.Sounds.Cat);
+                break;
+            case 1:
+                FMODManager.SINGLETON.PlaySound(FMODManager.Sounds.Grandma);
+                break;
+        }        
+        
         this.GetComponent <InputManager>().enabled = false;
         this.GetComponent<MonksHandsUpManager>().enabled = false;
         StartCoroutine("TriggerGameOver");
