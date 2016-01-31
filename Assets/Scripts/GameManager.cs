@@ -163,6 +163,7 @@ public class GameManager : MonoBehaviour
         {
             lightedCandles[i] = false;
         }
+
     }
 
     /// <summary>
@@ -272,8 +273,12 @@ public class GameManager : MonoBehaviour
         {
             firstTurn = !lightedCandles[0];
             for (int i = 1; i < lightedCandles.Length; ++i)
-                firstTurn |= !lightedCandles[i]; 
-                return;
+                firstTurn |= !lightedCandles[i];
+
+            if (!firstTurn) MonksHandsUpManager.SINGLETON.enabled = true;
+
+            return;
+
         }
 
         if (!successfully)

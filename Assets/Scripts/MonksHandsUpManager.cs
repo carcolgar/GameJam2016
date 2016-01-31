@@ -17,7 +17,46 @@ public class MonksHandsUpManager : MonoBehaviour {
     private float timeSinceLastHandsUp;
     private float accumulatedTimeHundsUp;
     private bool monksAreRisingArms;
-    
+
+
+    #region SINGLETON
+
+    // Unica instancia de la clase
+    private static MonksHandsUpManager _instance = null;
+
+    /// <summary>
+    /// Propiedad para acceder al singleton
+    /// </summary>
+    public static MonksHandsUpManager SINGLETON
+    {
+        get
+        {
+            if (_instance == null)
+                Debug.LogError("MonksHandsUpManager no inicializado");
+
+            return _instance;
+        }
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Awake this instance.
+    /// </summary>
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+        _instance = this;
+    }
+
+    /// <summary>
+    /// Raises the destroy event.
+    /// </summary>
+    private void OnDestroy()
+    {
+        _instance = null;
+    }
+
 	// Use this for initialization
 	void Start () {
 	   timeSinceLastHandsUp = 0;
@@ -27,15 +66,22 @@ public class MonksHandsUpManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	   if (!monksAreRisingArms && timeSinceLastHandsUp < minimunTimeBetweenMonksRiseArms) {
-           timeSinceLastHandsUp += Time.deltaTime;
-       } else {
-           if (!monksAreRisingArms) {
-               monksAreRisingArms = true;
-               timeSinceLastHandsUp = 0;
-               StartCoroutine(MonksHandsUp());
-           }
-       }
+        if (!GameManager.SINGLETON.IsFirstTurn)
+        {
+            if (!monksAreRisingArms && timeSinceLastHandsUp < minimunTimeBetweenMonksRiseArms)
+            {
+                timeSinceLastHandsUp += Time.deltaTime;
+            }
+            else
+            {
+                if (!monksAreRisingArms)
+                {
+                    monksAreRisingArms = true;
+                    timeSinceLastHandsUp = 0;
+                    StartCoroutine(MonksHandsUp());
+                }
+            }
+        }
 	}
     
     private IEnumerator MonksHandsUp () {
