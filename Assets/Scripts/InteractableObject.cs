@@ -55,7 +55,6 @@ public class InteractableObject : ClickableObject {
 
     public virtual void EndConflict()
     {
-        Debug.LogError("AAAHHH");
         // Sonido de fin y apagamos el de running
         FMODManager.SINGLETON.PlayOneShot(endConflictSound);
         FMODManager.SINGLETON.StopSound(runningConflictSound);
